@@ -10,7 +10,7 @@ The resulting models attempt to classify breast cancer data and ant/bee image da
 
 - The ant/bee image data comes from the ImageNet Hymenoptera dataset and each image can be classified as either 'ant' or 'bee'.
 
-Data preparation steps and resulting prepared files can be found in the _embedding_metric_learning_ folder.
+Data preparation steps and resulting prepared files can be found in the _embedding_metric_learning_ folder. .py can be run
 
 The tutorial_QML_antebee_original.py file can be run to produce results similar to those seen in Lloyd et al.'s 2020 work, 'Quantum Embeddings for Machine Learning' (https://arxiv.org/abs/2001.03622). Mutual overlap gram matrices and intermediary scatter plots are produced when run.
 
