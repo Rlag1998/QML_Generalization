@@ -1,7 +1,7 @@
 # QML_Generalization
 Generalization Performance of Quantum Metric Learning Classifiers
 
-Authors: Jonathan Kim and Stefan Bekiranov
+_Authors: Jonathan Kim and Stefan Bekiranov_
 
 This code demonstrates the generalization performance of quantum metric learning ('quantum embedding') classifiers.
 
