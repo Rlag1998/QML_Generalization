@@ -10,10 +10,10 @@ The resulting models attempt to classify breast cancer data and ant/bee image da
 
 - The ant/bee image data comes from the ImageNet Hymenoptera dataset and each image can be classified as either 'ant' or 'bee'.
 
-Data preparation steps and resulting prepared files can be found in the _embedding_metric_learning_ folder. .py can be run
+Data preparation steps and resulting prepared files can be found in the _embedding_metric_learning_ folder.
 
-The tutorial_QML_antebee_original.py file can be run to produce results similar to those seen in Lloyd et al.'s 2020 work, 'Quantum Embeddings for Machine Learning' (https://arxiv.org/abs/2001.03622). Mutual overlap gram matrices and intermediary scatter plots are produced when run.
+The tutorial_QML_antebee_original.py file can be run alongside the antbees_original.py data preparation file to produce results similar to those seen in Lloyd et al.'s 2020 work, 'Quantum Embeddings for Machine Learning' (https://arxiv.org/abs/2001.03622). Mutual overlap gram matrices and intermediary scatter plots are produced when run.
 
-The tutorial_QML_antbee_general.py file can be used when applying PCA to the classical input to the circuit prior to classification. Mutual overlap gram matrices and intermediary scatter plots are produced when run.
+The tutorial_QML_antbee_general.py file can be run alongside antwhen applying PCA to the classical input to the circuit prior to classification. Mutual overlap gram matrices and intermediary scatter plots are produced when run.
 
 The tutorial_QML_breast_cancer.py file can be used to classify breast cancer data, both with and without a prior PCA step. Mutual overlap gram matrices and intermediary scatter plots are produced when run.
