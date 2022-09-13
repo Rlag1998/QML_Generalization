@@ -1,5 +1,4 @@
 # QML_Generalization
-Generalization Performance of Quantum Metric Learning Classifiers
 
 _Authors: Jonathan Kim and Stefan Bekiranov_
 
