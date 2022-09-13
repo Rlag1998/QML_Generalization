@@ -14,6 +14,6 @@ Data preparation steps and resulting prepared files can be found in the _embeddi
 
 The tutorial_QML_antebee_original.py file can be run alongside the antbees_original.py data preparation file to produce results similar to those seen in Lloyd et al.'s 2020 work, 'Quantum Embeddings for Machine Learning' (https://arxiv.org/abs/2001.03622). Mutual overlap gram matrices and intermediary scatter plots are produced when run.
 
-The tutorial_QML_antbee_general.py file can be run alongside antwhen applying PCA to the classical input to the circuit prior to classification. Mutual overlap gram matrices and intermediary scatter plots are produced when run.
+The tutorial_QML_antbee_general.py file can be run alongside the antsbees_general.py data preparation file (starting from 512 classical input features) or antbees_general_noresnet.py data preparation file (starting from 150,528 classical input features) when applying PCA to the classical input to the circuit. Mutual overlap gram matrices and intermediary scatter plots are produced when run.
 
-The tutorial_QML_breast_cancer.py file can be used to classify breast cancer data, both with and without a prior PCA step. Mutual overlap gram matrices and intermediary scatter plots are produced when run.
+The tutorial_QML_breast_cancer.py file can be run alongside the cancer_general.py data preparation file (which includes a PCA step) or the cancer_non-PCA.py data preparation file (which does not include a PCA step) to classify breast cancer data. Mutual overlap gram matrices and intermediary scatter plots are produced when run.
