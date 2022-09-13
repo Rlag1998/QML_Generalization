@@ -9,3 +9,7 @@ The resulting models attempt to classify breast cancer data and ant/bee image da
 The breast cancer data comes from the UCI ML Breast Cancer (Diagnostic) Dataset and each sample can be classified as either 'benign' or 'malignant'.
 
 The ant/bee image data comes from the ImageNet Hymenoptera dataset and each image can be classified as either 'ant' or 'bee'.
+
+Data preparation steps and resulting prepared files can be found in the _embedding_metric_learning_ folder.
+
+
