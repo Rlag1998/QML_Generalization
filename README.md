@@ -2,6 +2,8 @@
 
 _Authors: Jonathan Kim and Stefan Bekiranov_
 
+_Correspondence: sb3de@virginia.edu_
+
 This code demonstrates the generalization performance of quantum metric learning ('quantum embedding') classifiers.
 
 The resulting models attempt to classify breast cancer data and ant/bee image data.
