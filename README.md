@@ -2,7 +2,7 @@
 
 _Authors: Jonathan Kim and Stefan Bekiranov_
 
-_Adapted from work authored by Maria Schuld and Aroosa Ijaz_
+_Adapted from work authored by Maria Schuld and Aroosa Ijaz:_ https://arxiv.org/abs/2001.03622
 
 _Correspondence: sb3de@virginia.edu_
 
