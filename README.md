@@ -6,7 +6,7 @@ _Correspondence: sb3de@virginia.edu_
 
 This code demonstrates the generalization performance of quantum metric learning ('quantum embedding') classifiers.
 
-The resulting models attempt to classify breast cancer data and ant/bee image data.
+The resulting models are used to classify breast cancer data and ant/bee image data.
 
 - The breast cancer data comes from the UCI ML Breast Cancer (Diagnostic) Dataset and each sample can be classified as either 'benign' or 'malignant'.
 
