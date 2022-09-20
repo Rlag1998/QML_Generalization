@@ -11,7 +11,7 @@ Quantum metric learning with principal component analysis
 **Adapted from work authored by Maria Schuld and Aroosa Ijaz**
 
 This tutorial builds upon the idea of quantum embeddings for metric
-learning presented in `Lloyd, Schuld, Ijaz, Izaac, Killoran (2019) <https://arxiv.org/abs/2001.03622>`_,
+learning presented in `Lloyd, Schuld, Ijaz, Izaac, Killoran (2020) <https://arxiv.org/abs/2001.03622>`_,
 by training a hybrid classical-quantum data
 embedding to classify breast cancer data. The example was inspired
 by `Mari et al. (2019) <https://arxiv.org/abs/1912.08278>`_,

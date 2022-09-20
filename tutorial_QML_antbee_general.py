@@ -11,7 +11,7 @@ Quantum metric learning with principal component analysis
 **Adapted from work authored by Maria Schuld and Aroosa Ijaz**
 
 This tutorial builds upon the idea of quantum embeddings for metric
-learning presented in `Lloyd, Schuld, Ijaz, Izaac, Killoran (2019) <https://arxiv.org/abs/2001.03622>`_,
+learning presented in `Lloyd, Schuld, Ijaz, Izaac, Killoran (2020) <https://arxiv.org/abs/2001.03622>`_,
 by training a hybrid classical-quantum data
 embedding to classify images of ants and bees. The example was inspired
 by `Mari et al. (2019) <https://arxiv.org/abs/1912.08278>`_,
@@ -46,80 +46,26 @@ np.random.seed(seed=123)
 # Idea
 # ----
 #
-# Quantum metric learning trains a quantum embedding—for example, a
-# quantum circuit that encodes classical data into quantum states—to
-# separate different classes of data in the Hilbert space of the quantum
-# system.
+# Quantum metric learning is used to train a quantum embedding, which is
+# used for classifying data. Quantum embeddings are learned by maximizing
+# Hilbert-Schmidt distance of datapoints from two classes. After training,
+# the datapoints of different clases become maximally separated in Hilbert
+# space. This results in a simple linear decision boundary in Hilbert space
+# which represents a complex decision boundary in the original feature space.
 #
-# The trained embedding can be used for classification. A new data sample
-# (red dot) gets mapped into Hilbert space via the same embedding, and a
-# special measurement compares it to the two embedded classes.
-# The decision boundary of the measurement in quantum state space is nearly
-# linear (red dashed line).
-#
-# .. figure:: ../demonstrations/embedding_metric_learning/classification.png
-#    :align: center
-#    :width: 40%
-#
-# Since a simple metric in Hilbert space corresponds to a potentially much
+# The trained embedding can be used for classification. Since a simple
+# metric in Hilbert space corresponds to a potentially much
 # more complex metric in the original data space, the simple decision
 # boundary can translate to a non-trivial decision boundary in the
 # original space of the data.
 #
-# .. figure:: ../demonstrations/embedding_metric_learning/dec_boundary.png
-#    :align: center
-#    :width: 40%
+# A cost function is used to track the progress of the training; the lower
+# the cost function, the greater the class separation in Hilbert space.
 #
-# The best quantum measurement one could construct to classify new inputs
-# depends on the loss defined for the classification task, as well as the
-# metric used to optimize the separation of data.
+# The model is optimized with the RMSPropOptimizer and data are classified
+# according to a KNN-style classifier.
 #
-# For a linear cost function, data separated by the trace distance or
-# :math:`\ell_1` metric is best distinguished by a Helstrom measurement, while
-# data separated by the Hilbert-Schmidt distance or :math:`\ell_2` metric
-# is best classified by a fidelity measurement. Here we show how to
-# implement training and classification based on the :math:`\ell_2`
-# metric.
-#
-# Embedding
-# ---------
-#
-# A quantum embedding is a representation of data points :math:`x` from a
-# data domain :math:`X` as a *(quantum) feature state*
-# :math:`| x \rangle`. Either the full embedding, or part of it, can be
-# facilitated by a "quantum feature map", a quantum circuit
-# :math:`\Phi(x)` that depends on the input. If the circuit has additional
-# parameters :math:`\theta` that are adaptable,
-# :math:`\Phi = \Phi(x, \theta)`, the quantum feature map can be trained
-# via optimization.
-#
-# In this tutorial we investigate a trainable, hybrid classical-quantum embedding
-# implemented by a partially pre-trained classical neural network,
-# followed by a parametrized quantum circuit that implements the quantum
-# feature map:
-#
-# |
-#
-# .. figure:: ../demonstrations/embedding_metric_learning/pipeline.png
-#    :align: center
-#    :width: 100%
-#
-# |
-#
-# Following `Mari et al. (2019) <https://arxiv.org/abs/1912.08278>`__,
-# for the classical neural network we use PyTorch's
-# ``torch.models.resnet18()``, setting ``pretrained=True``. The final
-# layer of the ResNet, which usually maps a 512-dimensional vector to 1000
-# nodes representing different image classes, is replaced by a linear
-# layer of 2 output neurons. The classical part of the embedding therefore
-# maps the images to a 2-dimensional *intermediate feature space*.
-#
-# For the quantum part we use the QAOA embedding proposed
-# in `Lloyd et al. (2019) <https://arxiv.org/abs/2001.03622>`_.
-# The feature map is represented by a layered variational circuit, which
-# alternates a "feature-encoding Hamiltonian" and an "Ising-like" Hamiltonian
-# with ZZ-entanglers (the two-qubit gates in the circuit diagram above) and ``RY`` gates as local fields.
-#
+
 
 def feature_encoding_hamiltonian(features, wires):
 
@@ -147,43 +93,14 @@ def QAOAEmbedding(features, weights, wires):
     feature_encoding_hamiltonian(features, wires)
 
 ######################################################################
-# .. note:: Instead of using the hand-coded ``QAOAEmbedding()`` function, PennyLane provides
-#           a built-in :func:`QAOAEmebedding <pennylane.templates.QAOAEmbedding>` template.
-#           To use it, simply replace the cell above
-#           by ``from pennylane.templates import QAOAEmbedding``. This will also allow you to use
-#           a different number of qubits in your experiment.
+# By default, the model has 1024 + 12 trainable parameters - 1024 for the
+# classical part of the model and 12 for the quantum part.
 #
-# Overall, the embedding has 1024 + 12 trainable parameters - 1024 for the
-# classical part of the model and 12 for the four layers of the QAOA
-# embedding.
-#
-# .. note:: The pretrained neural network has already learned
-#           to separate the data. The example does therefore not
-#           make any claims on the performance of the embedding, but aims to
-#           illustrate how a hybrid embedding can be trained.
-#
-# Data
-# ----
-#
-# We consider a binary supervised learning problem with examples
-# :math:`\{a_1,...a_{M_a}\} \subseteq X` from class :math:`A` and examples
-# :math:`\{b_1,...b_{M_b}\} \subseteq X` from class :math:`B`. The data
-# are images of ants (:math:`A`) and bees (:math:`B`), taken from `Kaggle's
-# hymenoptera dataset <https://www.kaggle.com/ajayrana/hymenoptera-data>`__.
-# This is a sample of four images:
-#
-# .. figure:: ../demonstrations/embedding_metric_learning/data_example.png
-#    :align: center
-#    :width: 50%
-#
-# For convenience, instead of coding up the classical neural network, we
-# load `pre-extracted feature vectors of the images
-# <https://github.com/XanaduAI/qml/blob/master/demonstrations/embedding_metric_learning/X_antbees.txt>`_.
-# These were created by
-# resizing, cropping and normalizing the images, and passing them through
-# PyTorch's pretrained ResNet 512 (that is, without the final linear layer)
-# (see `script used for pre-processing
-# <https://github.com/XanaduAI/qml/blob/master/demonstrations/embedding_metric_learning/image_to_resnet_output.py>`_).
+# The following datafiles were created by standardizing, normalizing,
+# passing images of ants and bees through a ResNet18 network (without its
+# final layer) and carrying out principal component analysis on the output.
+# The data preparation code used to create these files can be found in the
+# embedding_metric_learning folder.
 #
 
 X = np.loadtxt("embedding_metric_learning/ab_x_array.txt", ndmin=2)  #1  pre-extracted inputs
@@ -206,32 +123,7 @@ print(B_val.shape)
 
 
 ######################################################################
-# Cost
-# ----
-#
-# The distance metric underlying the notion of 'separation' is the
-# :math:`\ell_2` or Hilbert-Schmidt norm, which depends on overlaps of
-# the embedded data points :math:`|a\rangle`
-# from class :math:`A` and :math:`|b\rangle` from class :math:`B`,
-#
-# .. math::
-#
-#     D_{\mathrm{hs}}(A, B) =  \frac{1}{2} \big( \sum_{i, i'} |\langle a_i|a_{i'}\rangle|^2
-#        +  \sum_{j,j'} |\langle b_j|b_{j'}\rangle|^2 \big)
-#        - \sum_{i,j} |\langle a_i|b_j\rangle|^2.
-#
-# To maximize the :math:`\ell_2` distance between the two classes in
-# Hilbert space, we minimize the cost
-# :math:`C = 1 - \frac{1}{2}D_{\mathrm{hs}}(A, B)`.
-#
-# To set up the "quantum part" of the cost function in PennyLane, we have
-# to create a quantum node. Here, the quantum node is simulated on
-# PennyLane's ``'default.qubit'`` backend.
-#
-# .. note:: One could also connect the
-#           quantum node to a hardware backend to find out if the noise of a
-#           physical implementation still allows us to train the embedding.
-#
+# Quantum node initialization.
 
 n_features = 2
 n_qubits = 2 * n_features + 1
@@ -240,11 +132,9 @@ dev = qml.device("default.qubit", wires=n_qubits)
 
 
 ######################################################################
-# We use a SWAP test to measure the overlap
-# :math:`|\langle \psi | \phi \rangle|^2` between two quantum feature
-# states :math:`|\psi\rangle` and :math:`|\phi\rangle`, prepared by a
-# ``QAOAEmbedding`` with weights ``q_weights``.
+# SWAP test for overlap measurement.
 #
+
 x1list = []
 x2list = []
 
@@ -261,22 +151,7 @@ def swap_test(q_weights, x1, x2):
         qml.CSWAP(wires=[0, k + 1, 2 + k + 1])
     qml.Hadamard(wires=0)
 
-    #x1list = []
-    #x1list.append(x1)
-
-    #x2list = []
-    #x2list.append(x2)
-
     return qml.expval(qml.PauliZ(0))
-
-
-######################################################################
-# Before executing the swap test, the feature vectors have to be
-# multiplied by a (2, 512)-dimensional matrix that represents the weights
-# of the linear layer. This trainable classical pre-processing is executed
-# before calling the swap test:
-#
-
 
 
 def overlaps(weights, X1=None, X2=None):
@@ -294,20 +169,13 @@ def overlaps(weights, X1=None, X2=None):
             overlap += swap_test(q_weights, w_x1, w_x2)
 
     mean_overlap = overlap / (len(X1) * len(X2))
-
-    #print(x1)
-    #print(x2)
     
     return mean_overlap
 
 
 ######################################################################
-# In the ``overlaps()`` function, ``weights`` is a list of two arrays, the first
-# representing the matrix of the linear layer, and the second containing
-# the quantum circuit parameters.
-#
-# With this we can define the cost function :math:`C`, which depends on
-# inter- and intra-cluster overlaps.
+# The cost function, which takes both inter-cluster overlaps and intra-
+# cluster overlaps into consideration.
 #
 
 
@@ -325,51 +193,30 @@ def cost(weights, A=None, B=None):
 ######################################################################
 # Optimization
 # ------------
-# The initial parameters for the trainable classical and quantum part of the embedding are
-# chosen at random. The number of layers in the quantum circuit is derived from the first
-# dimension of `init_pars_quantum`.
+# The intial classical and quantum parameters are generated at random.
 #
 
-# generate initial parameters for circuit
+
+# generate initial parameters for quantum component
 init_pars_quantum = np.random.normal(loc=0, scale=0.1, size=(4, 3))
 
-# generate initial parameters for linear layer
+# generate initial parameters for classical component
 init_pars_classical = np.random.normal(loc=0, scale=0.1, size=(2, 4))
-
-#init_pars_quantum = np.array(init_pars_quantum, requires_grad = True) ########
-
-#init_pars_classical = np.array(init_pars_classical, requires_grad = True) ########
 
 init_pars = [init_pars_classical, init_pars_quantum]
 
-#for i in init_pars: ########
-    #i.requires_grad = True ########
-
 
 ######################################################################
-# .. note:: You can alternatively use the utility function :func:`pennylane.init.qaoa_embedding_normal`
-#           to conveniently generate the correct shape of ``init_pars_quantum`` for
-#           :func:`pennylane.templates.QAOAEmbedding`. Import it with the statement
-#           ``from pennylane.init import qaoa_embedding_normal``.
-#
-# We can now train the embedding with an ``RMSPropOptimizer``, sampling
-# five training points from each class in every step, here shown for 2 steps.
+# The RMSPropOptimizer is used with a step size of 0.01 and batch size
+# of 10 to optimize the model over 1500 iterations. The 'pars' variable
+# is updated after every iteration.
 #
 
 optimizer = qml.RMSPropOptimizer(stepsize=0.01)
-#optimizer = qml.AdamOptimizer()
-#optimizer = qml.AdamOptimizer(stepsize = 0.01)
 batch_size = 10
 pars = init_pars
 
-#for i in pars:   ########
-#    i.requires_grad = True ########
-
-#pars = np.array(init_pars, requires_grad = True)
-#temporary = cost(pars, A=A_val, B=B_val)
-#print("Initial cost {:2f}".format(temporary))
 cost_list = []
-#test_func = lambda w: cost(w,A=A_batch, B=B_batch)
 for i in range(1500):
 
     # Sample a batch of training inputs from each class
@@ -377,10 +224,6 @@ for i in range(1500):
     selectB = np.random.choice(range(len(B)), size=(batch_size,), replace=True)
     A_batch = [A[s] for s in selectA]
     B_batch = [B[s] for s in selectB]
-    #print(selectA)
-    #print(selectB)
-    #print(A_batch[0][0])
-    #print(B_batch[0][0])
 
     # Walk one optimization step
     pars = optimizer.step(lambda w: cost(w, A=A_batch, B=B_batch), pars)
@@ -394,20 +237,12 @@ for i in range(1500):
     #    cost_list.append(cst)
 
 print("broken")
-######################################################################
-# Optimizing a hybrid quantum-classical model with 1024 + 12 parameters
-# takes an awfully long time. We will
-# therefore load a set of `already trained parameters
-# <https://github.com/XanaduAI/qml/blob/master/demonstrations/embedding_metric_learning/pretrained_parameters.npy>`_
-# (from running the cell above for 1500 steps).
-#
-# .. note:: Training is sensitive to the hyperparameters
-#           such as the batch size, initial parameters and
-#           optimizer used.
-#
 
-#pretrained_pars = np.load("embedding_metric_learning/pretrained_parameters.npy",
-                          #allow_pickle=True)
+######################################################################
+# The quantum and classical parameters are saved into txt files so
+# they may be used at a future time without having to re-train the
+# initial parameters.
+# 
 
 print("quantum pars: ",pars[1])
 with open(r"thetas.txt", "w") as file1:
@@ -425,17 +260,15 @@ with open(r"x1x2.txt", "w") as file2:
 # Analysis
 # --------
 #
-# Let us analyze the effect of training. To speed up the script, we will
-# only look at a reduced version of the training and validation set,
-# selecting the first 10 points from either class.
+# For generating mutual data overlap gram matrices, a smaller subset of
+# the test set data is used, as determined by the 'select' variable.
 #
 
 select = 10
 
 
 ######################################################################
-# First of all, the final cost with the pre-trained parameters is as
-# follows:
+# Final cost values can be printed out here.
 #
 
 #cost_train = cost(pars, A=A[:select], B=B[:select])
@@ -448,9 +281,7 @@ select = 10
 
 
 ######################################################################
-# A useful way to visualize the distance of data points is to plot a Gram
-# matrix of the overlaps of different feature states. For this we join the
-# first 10 examples of each of the two classes.
+# Continuation of gram matrices preparation
 #
 
 #A_B = np.r_[A[:select], B[:select]]
@@ -458,8 +289,7 @@ A_B = np.r_[A_val[:select], B_val[:select]]
 
 
 ######################################################################
-# Before training, the separation between the classes is not recognizable
-# in the Gram matrix:
+# Before training, class separation is not observed within the gram matrices:
 #
 
 gram_before = [[overlaps(init_pars, X1=[x1], X2=[x2]) for x1 in A_B] for x2 in A_B]
@@ -473,7 +303,9 @@ plt.show()
 
 
 ######################################################################
-# After training, the gram matrix clearly separates the two classes.
+# After training, the goal is for there to be a clear separation between
+# the two classes, such that there are four clearly defined squares (two
+# yellow, two purple).
 #
 
 gram_after = [[overlaps(pars, X1=[x1], X2=[x2]) for x1 in A_B] for x2 in A_B]
@@ -487,152 +319,91 @@ plt.show()
 
 
 ######################################################################
-# We can also visualize the "intermediate layer" of 2-dimensional vectors
-# :math:`(x_1, x_2)`, just before feeding them into the quantum circuit.
-# Before training the (2, 512)-dimensional weight matrix of the linear
-# layer, the classes are arbitrarily intermixed.
+# The two-dimensional intermediate (x1, x2) points can be graphed in the
+# form of scatter plots to help visualize the separation progress from
+# a different perspective.
+#
+# The code below results in the pre-training state.
 #
 
-red_patch = mpatches.Patch(color='red', label='Training: Bee') ###
-blue_patch = mpatches.Patch(color='blue', label='Training: Ant') ###
-lightcoral_patch = mpatches.Patch(color='lightcoral', label='Test: Bee') ###
-cornflowerblue_patch = mpatches.Patch(color='cornflowerblue', label='Test: Ant') ###
-plt.rcParams["figure.figsize"] = (8,8) ###
+red_patch = mpatches.Patch(color='red', label='Training: Bee') 
+blue_patch = mpatches.Patch(color='blue', label='Training: Ant') 
+lightcoral_patch = mpatches.Patch(color='lightcoral', label='Test: Bee') 
+cornflowerblue_patch = mpatches.Patch(color='cornflowerblue', label='Test: Ant') 
+plt.rcParams["figure.figsize"] = (8,8)
 plt.rc('xtick',labelsize=12)
 plt.rc('ytick',labelsize=12)
 
-
-
-#plt.show()
-
 for b in B:
     intermediate_b = init_pars[0] @ b
     plt.scatter(intermediate_b[:][0], intermediate_b[:][1], c="blue")
-    #print(intermediate_b)
 
 for a in A:
     intermediate_a = init_pars[0] @ a
     plt.scatter(intermediate_a[:][0], intermediate_a[:][1], c="red")
-    #print(intermediate_a)
 
-
-
-#plt.show()
-#print("\n")
 for b in B_val:
     intermediate_b = init_pars[0] @ b
     plt.scatter(intermediate_b[:][0], intermediate_b[:][1], c="cornflowerblue")
-    #print(intermediate_b)
 
 for a in A_val:
     intermediate_a = init_pars[0] @ a
     plt.scatter(intermediate_a[:][0], intermediate_a[:][1], c="lightcoral")
-    #print(intermediate_a)
 
-plt.xlabel(r'$x_1$', fontsize = 20) ###
-plt.ylabel(r'$x_2$', fontsize = 20) ###
-plt.legend(handles=[blue_patch, cornflowerblue_patch, red_patch, lightcoral_patch], fontsize = 12) ###
+plt.xlabel(r'$x_1$', fontsize = 20)
+plt.ylabel(r'$x_2$', fontsize = 20)
+plt.legend(handles=[blue_patch, cornflowerblue_patch, red_patch, lightcoral_patch], fontsize = 12)
 plt.show()
-
-#print(init_pars[0].shape)
-#print(A[0].shape)
-#print((init_pars[0] @ A[0]).shape)
 
 ######################################################################
-# However, after training, the linear layer learned to arrange the
-# intermediate feature vectors on a periodic grid.
+# Below is the corresponding post-training state (after 1500 iterations).
 #
 
-
-
-#plt.show()
-#print("\n")
 for b in B:
     intermediate_b = pars[0] @ b
     plt.scatter(intermediate_b[:][0], intermediate_b[:][1], c="blue")
-    #print(intermediate_b)
 
 for a in A:
     intermediate_a = pars[0] @ a
     plt.scatter(intermediate_a[:][0], intermediate_a[:][1], c="red")
-    #print(intermediate_a)
 
-#plt.show()
-
-
-
-
-
-#test
-
-
-
-
-#plt.show()
-#print("\n")
 for b in B_val:
     intermediate_b = pars[0] @ b
     plt.scatter(intermediate_b[:][0], intermediate_b[:][1], c="cornflowerblue")
-    #print(intermediate_b)
 
 for a in A_val:
     intermediate_a = pars[0] @ a
     plt.scatter(intermediate_a[:][0], intermediate_a[:][1], c="lightcoral")
-    #print(intermediate_a)
 
-plt.xlabel(r'$x_1$', fontsize = 20) ###
-plt.ylabel(r'$x_2$', fontsize = 20) ###
-plt.legend(handles=[blue_patch, cornflowerblue_patch, red_patch, lightcoral_patch], fontsize = 12) ###
+plt.xlabel(r'$x_1$', fontsize = 20)
+plt.ylabel(r'$x_2$', fontsize = 20)
+plt.legend(handles=[blue_patch, cornflowerblue_patch, red_patch, lightcoral_patch], fontsize = 12)
 plt.show()
 
-print("shape: ", pars[0].shape)
-#print("shape: ", pars[1].shape)
-#print(intermediate_b.shape)
 
 ######################################################################
 # Classification
 # --------------
 #
-# Given a new input :math:`x \in X`, and its quantum feature state
-# :math:`|x \rangle`, the trained embedding can be used to solve the
-# binary classification problem of assigning :math:`x` to either :math:`A`
-# or :math:`B`. For an embedding separating data via the :math:`\ell_2`
-# metric, a very simple measurement can be used for classification: one
-# computes the overlap of :math:`|x \rangle` with examples of
-# :math:`|a \rangle` and :math:`|b \rangle`. :math:`x` is assigned to the
-# class with which it has a larger average overlap in the space of the
-# embedding.
+# A KNN-style classifier can be used to determine the class for each new
+# datapoint based on the datapoints' degree of overlap with the two
+# separated classes of the training set data.
 #
-# Let us consider a picture of an ant from the validation set (assuming
-# our model never saw it during training):
-#
-# |
-#
-# .. figure:: ../demonstrations/embedding_metric_learning/ant.jpg
-#    :align: center
-#    :width: 40%
-#
-# |
-#
-# After passing it through the classical neural network (excluding the final
-# linear layer), the 512-dimensional feature vector is given by
-# ``A_val[0]``.
-
-
 
 
 ######################################################################
-# We compare the new input with randomly selected samples. The more
-# samples used, the smaller the variance in the prediction.
+# Depicted below is test set classification evaluation by means of a
+# 'predict' function as well as subsequent f1, precision, recall, accuracy
+# score and confusion matrix calcuation.
 #
 
 
 def predict(n_samples, pred_low, pred_high, choice):
     
-    truepos = 0 ###
-    falseneg = 0 ###
-    falsepos = 0 ###
-    trueneg = 0 ###
+    truepos = 0
+    falseneg = 0
+    falsepos = 0
+    trueneg = 0
 
     for i in range(pred_low, pred_high):
         pred = ""
@@ -640,8 +411,6 @@ def predict(n_samples, pred_low, pred_high, choice):
             x_new = A_val[i] #Bee
         else:
             x_new = B_val[i] #Ant
-
-        #print(x_new.shape)
 
         prediction = 0
         for s in range(n_samples):
@@ -659,6 +428,10 @@ def predict(n_samples, pred_low, pred_high, choice):
 
         # normalize prediction
         prediction = prediction / n_samples
+        
+        # This component acts as the sign function of this KNN-style method.
+        # 'Negative' predictions correspond to bees, while 'positive' predictions
+        # correspond to ants. The confusion matrix is constructed simultaneously.
         if prediction < 0:
             pred = "Bee"
             if choice == 0:
@@ -691,12 +464,8 @@ print("Accuracy: ",accuracy)
 print("Specificity: ", specificity)
 print("F1 Score: ", f1)
 
-#print(cost_list)
 
 ######################################################################
-# Since the result is negative, the new data point is (correctly) predicted
-# to be a picture of an ant, which was the class with -1 labels.    ###Incorrect, it's the other way round.###
-#
 # References
 # ----------
 # Seth Lloyd, Maria Schuld, Aroosa Ijaz, Josh Izaac, Nathan Killoran: "Quantum embeddings for machine learning"
@@ -705,19 +474,3 @@ print("F1 Score: ", f1)
 # Andrea Mari, Thomas R. Bromley, Josh Izaac, Maria Schuld, Nathan Killoran: "Transfer learning
 # in hybrid classical-quantum neural networks" arXiv preprint arXiv:1912.08278
 #
-# Erratum
-# -------
-#
-# Previous versions of this tutorial may instead use the following gate sequence in the
-# ``ising_hamiltonian`` function:
-#
-# .. code-block:: python
-#
-#   # ZZ coupling
-#   CNOT(wires=wires)
-#   RZ(2*weights[l, 0], wires=wires[0])
-#   CNOT(wires=wires)
-#
-# The current version fixes a bug in the ``CNOT`` wires and does
-# not multiply the weight parameter by a factor ``2``. It is consistent with the in-built ``QAOAEmbedding``
-# of PennyLane v0.9 and higher.

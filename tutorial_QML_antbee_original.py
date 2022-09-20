@@ -11,13 +11,11 @@ Quantum metric learning with principal component analysis
 **Adapted from work authored by Maria Schuld and Aroosa Ijaz**
 
 This tutorial builds upon the idea of quantum embeddings for metric
-learning presented in `Lloyd, Schuld, Ijaz, Izaac, Killoran (2019) <https://arxiv.org/abs/2001.03622>`_,
+learning presented in `Lloyd, Schuld, Ijaz, Izaac, Killoran (2020) <https://arxiv.org/abs/2001.03622>`_,
 by training a hybrid classical-quantum data
 embedding to classify images of ants and bees. The example was inspired
 by `Mari et al. (2019) <https://arxiv.org/abs/1912.08278>`_,
 (see also this `tutorial <https://pennylane.ai/qml/demos/tutorial_quantum_transfer_learning.html>`_).
-This tutorial adapts the work by Lloyd et al. by changing the data pre-processing steps to include
-principal component analysis for feature reduction.
 """
 
 
