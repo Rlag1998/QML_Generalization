@@ -2,6 +2,8 @@
 
 _Authors: Jonathan Kim and Stefan Bekiranov_
 
+_Adapted from work authored by Maria Schuld and Aroosa Ijaz_
+
 _Correspondence: sb3de@virginia.edu_
 
 This code demonstrates the generalization performance of quantum metric learning ('quantum embedding') classifiers.
