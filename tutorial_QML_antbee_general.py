@@ -7,17 +7,20 @@ Quantum metric learning with principal component analysis
         a quantum embedding for metric learning. This technique is used to train
         a hybrid quantum-classical data embedding to classify images of ants and bees.
 
-**Authors: Jonathan Kim and Stefan Bekiranov
 **Adapted from work authored by Maria Schuld and Aroosa Ijaz**
+**Authors: Jonathan Kim and Stefan Bekiranov
 
-This tutorial builds upon the idea of quantum embeddings for metric
-learning presented in `Lloyd, Schuld, Ijaz, Izaac, Killoran (2020) <https://arxiv.org/abs/2001.03622>`_,
-by training a hybrid classical-quantum data
-embedding to classify images of ants and bees. The example was inspired
-by `Mari et al. (2019) <https://arxiv.org/abs/1912.08278>`_,
+This tutorial uses the idea of quantum embeddings for metric learning presented in
+`Lloyd, Schuld, Ijaz, Izaac, Killoran (2020) <https://arxiv.org/abs/2001.03622>`_,
+by training a hybrid classical-quantum data embedding to classify images of ants and bees.
+Their example was inspired by `Mari et al. (2019) <https://arxiv.org/abs/1912.08278>`_,
 (see also this `tutorial <https://pennylane.ai/qml/demos/tutorial_quantum_transfer_learning.html>`_).
-This tutorial adapts the work by Lloyd et al. by changing the data pre-processing steps to include
-principal component analysis for feature reduction.
+This tutorial and its preparation steps (as included in the antsbees_general.py and
+antsbees_general_no_resnet.py files in the embedding_metric_learning folder)
+adapts the work of Lloyd et al. by changing the data pre-processing steps to include
+principal component analysis for feature reduction. This tutorial aims to produce
+good generalization performance for test set data (something which was not demonstrated
+in the original quantum metric learning code).
 """
 
 
@@ -195,12 +198,18 @@ def cost(weights, A=None, B=None):
 # ------------
 # The intial classical and quantum parameters are generated at random.
 #
+# The lattermost integer belonging to the 'size' attribute of the
+# init_pars_classical variable is changed according to the number of
+# principal components used during data preparation (as determined by
+# the configuration ofthe data preparation files in the
+# embedding_metric_learning folder).
+#
 
 
 # generate initial parameters for quantum component
 init_pars_quantum = np.random.normal(loc=0, scale=0.1, size=(4, 3))
 
-# generate initial parameters for classical component
+# generate initial parameters for classical component.
 init_pars_classical = np.random.normal(loc=0, scale=0.1, size=(2, 4))
 
 init_pars = [init_pars_classical, init_pars_quantum]

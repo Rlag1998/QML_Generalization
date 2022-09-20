@@ -5,19 +5,21 @@ Quantum metric learning with principal component analysis
 .. meta::
     :property="og:description": This demonstration illustrates the idea of training
         a quantum embedding for metric learning. This technique is used to train
-        a hybrid quantum-classical data embedding to classify images of ants and bees.
+        a hybrid quantum-classical data embedding to classify breast cancer data.
 
-**Authors: Jonathan Kim and Stefan Bekiranov
 **Adapted from work authored by Maria Schuld and Aroosa Ijaz**
+**Authors: Jonathan Kim and Stefan Bekiranov
 
-This tutorial builds upon the idea of quantum embeddings for metric
-learning presented in `Lloyd, Schuld, Ijaz, Izaac, Killoran (2020) <https://arxiv.org/abs/2001.03622>`_,
-by training a hybrid classical-quantum data
-embedding to classify breast cancer data. The example was inspired
-by `Mari et al. (2019) <https://arxiv.org/abs/1912.08278>`_,
+This tutorial uses the idea of quantum embeddings for metric learning presented in
+`Lloyd, Schuld, Ijaz, Izaac, Killoran (2020) <https://arxiv.org/abs/2001.03622>`_,
+by training a hybrid classical-quantum data embedding to classify breast cancer data.
+Lloyd et al.'s appraoch was inspired by `Mari et al. (2019) <https://arxiv.org/abs/1912.08278>`_,
 (see also this `tutorial <https://pennylane.ai/qml/demos/tutorial_quantum_transfer_learning.html>`_).
-This tutorial adapts the work by Lloyd et al. by changing the data pre-processing steps to include
-principal component analysis for feature reduction.
+This tutorial and its corresponding preparation steps (as included in cancer_general.py and
+cancer_non-PCA.py files in the embedding_metric_learning folder) adapts the work of Lloyd et al. by changing
+the data pre-processing steps to include principal component analysis for feature reduction.
+This tutorial aims to produce good generalization peformance for test set data (something which
+was not demonstrated in the original quantum metric learning code).
 """
 
 
