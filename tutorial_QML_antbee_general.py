@@ -8,7 +8,8 @@ Quantum metric learning with principal component analysis
         a hybrid quantum-classical data embedding to classify images of ants and bees.
 
 **Adapted from work authored by Maria Schuld and Aroosa Ijaz**
-**Authors: Jonathan Kim and Stefan Bekiranov
+
+**Authors: Jonathan Kim and Stefan Bekiranov**
 
 This tutorial uses the idea of quantum embeddings for metric learning presented in
 `Lloyd, Schuld, Ijaz, Izaac, Killoran (2020) <https://arxiv.org/abs/2001.03622>`_,
@@ -39,14 +40,14 @@ from pennylane import RX, RY, RZ, CNOT
 
 
 ######################################################################
-# The following random seed was used:
+# The following random seed is used:
 #
 
 np.random.seed(seed=123)
 
 
 ######################################################################
-# Idea
+# Embedding
 # ----
 #
 # Quantum metric learning is used to train a quantum embedding, which is
@@ -56,17 +57,11 @@ np.random.seed(seed=123)
 # space. This results in a simple linear decision boundary in Hilbert space
 # which represents a complex decision boundary in the original feature space.
 #
-# The trained embedding can be used for classification. Since a simple
-# metric in Hilbert space corresponds to a potentially much
-# more complex metric in the original data space, the simple decision
-# boundary can translate to a non-trivial decision boundary in the
-# original space of the data.
-#
 # A cost function is used to track the progress of the training; the lower
 # the cost function, the greater the class separation in Hilbert space.
 #
-# The model is optimized with the RMSPropOptimizer and data are classified
-# according to a KNN-style classifier.
+# The model is ultimately optimized with the RMSPropOptimizer and data are
+# classified according to a KNN-style classifier.
 #
 
 
@@ -99,9 +94,10 @@ def QAOAEmbedding(features, weights, wires):
 # By default, the model has 1024 + 12 trainable parameters - 1024 for the
 # classical part of the model and 12 for the quantum part.
 #
-# The following datafiles were created by standardizing, normalizing,
+# The following datafiles were created by standardizing, normalizing, situationally
 # passing images of ants and bees through a ResNet18 network (without its
-# final layer) and carrying out principal component analysis on the output.
+# final layer) and carrying out principal component analysis on the output to
+# reduce the number of trainable parameters.
 # The data preparation code used to create these files can be found in the
 # embedding_metric_learning folder.
 #
@@ -114,8 +110,8 @@ X_val = np.loadtxt(
 Y_val = np.loadtxt("embedding_metric_learning/ab_y_test_array.txt")  # validation labels
 
 # split data into two classes
-A = X[Y == -1] #bee
-B = X[Y == 1] #ant
+A = X[Y == -1] #bees
+B = X[Y == 1] #ants
 A_val = X_val[Y_val == -1]
 B_val = X_val[Y_val == 1]
 
@@ -201,15 +197,20 @@ def cost(weights, A=None, B=None):
 # The lattermost integer belonging to the 'size' attribute of the
 # init_pars_classical variable is changed according to the number of
 # principal components used during data preparation (as determined by
-# the configuration ofthe data preparation files in the
+# the configuration of the data preparation files in the
 # embedding_metric_learning folder).
 #
 
 
-# generate initial parameters for quantum component
+# generate initial parameters for the quantum component, such that
+# the resulting number of trainable quantum parameters is equal to
+# the product of the elements that make up the size attribute
+# (4 * 3 = 12).
 init_pars_quantum = np.random.normal(loc=0, scale=0.1, size=(4, 3))
 
-# generate initial parameters for classical component.
+# generate initial parameters for the classical component, such that
+# the resulting number of trainable classical parameters is equal to
+# the product of the elements that make up the size attribute.
 init_pars_classical = np.random.normal(loc=0, scale=0.1, size=(2, 4))
 
 init_pars = [init_pars_classical, init_pars_quantum]
@@ -313,8 +314,8 @@ plt.show()
 
 ######################################################################
 # After training, the goal is for there to be a clear separation between
-# the two classes, such that there are four clearly defined squares (two
-# yellow, two purple).
+# the two classes, such that there are four clearly defined squares of
+# mutual overlap (two yellow, two purple).
 #
 
 gram_after = [[overlaps(pars, X1=[x1], X2=[x2]) for x1 in A_B] for x2 in A_B]
@@ -332,7 +333,7 @@ plt.show()
 # form of scatter plots to help visualize the separation progress from
 # a different perspective.
 #
-# The code below results in the pre-training state.
+# The code below results in the pre-training scatter plot.
 #
 
 red_patch = mpatches.Patch(color='red', label='Training: Bee') 
@@ -365,7 +366,7 @@ plt.legend(handles=[blue_patch, cornflowerblue_patch, red_patch, lightcoral_patc
 plt.show()
 
 ######################################################################
-# Below is the corresponding post-training state (after 1500 iterations).
+# The below code results in the post-training scatter plot (after 1500 iterations).
 #
 
 for b in B:
@@ -395,15 +396,12 @@ plt.show()
 # --------------
 #
 # A KNN-style classifier can be used to determine the class for each new
-# datapoint based on the datapoints' degree of overlap with the two
+# datapoint based on the datapoint's degree of overlap with each of the two
 # separated classes of the training set data.
 #
-
-
-######################################################################
-# Depicted below is test set classification evaluation by means of a
-# 'predict' function as well as subsequent f1, precision, recall, accuracy
-# score and confusion matrix calcuation.
+# Below, test set classification is evaluated by means of a 'predict'
+# function to yield subsequent F1, precision, recall, accuracy and specificity
+# scores. A confusion matrix of the form (TP, FN, FP, TN) is also returned.
 #
 
 
@@ -440,7 +438,7 @@ def predict(n_samples, pred_low, pred_high, choice):
         
         # This component acts as the sign function of this KNN-style method.
         # 'Negative' predictions correspond to bees, while 'positive' predictions
-        # correspond to ants. The confusion matrix is constructed simultaneously.
+        # correspond to ants. The confusion matrix is also constructed here.
         if prediction < 0:
             pred = "Bee"
             if choice == 0:
