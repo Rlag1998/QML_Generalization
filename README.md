@@ -25,4 +25,4 @@ The tutorial_QML_breast_cancer.py file can be run after running the cancer_gener
 By running the above files, it can be seen in the resulting outputs that:
 - Quantum Metric Learning cannot generalize well for test data when using a dataset with too many initial features (e.g. the ants/bees image dataset).
 - Quantum Metric Learning results in good classification for datasets that have a much greater number of samples than the intial number of parameters (e.g. the breast cancer diagnostic dataset).
-- PCA can help improve classification performance when applied to the initial input features of a dataset.
+- PCA can help improve generalizability and classification performance when applied to the initial input features of a dataset.
