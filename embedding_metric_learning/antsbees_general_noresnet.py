@@ -66,10 +66,8 @@ feat_cols = ['pixel'+str(i) for i in range(X_tot_flat.shape[1])]
 df_antbee = pd.DataFrame(X_tot_flat,columns=feat_cols)
 df_antbee['label'] = Y_tot
 
-print(df_antbee)
 pca_antbee = PCA(n_components=pc)
 principalComponents_antbee = pca_antbee.fit_transform(df_antbee.iloc[:,:-1])
-print(principal_antbee_Df)
 
 principal_antbee_Df = pd.DataFrame(data = principalComponents_antbee)
 principal_antbee_Df.columns = ["PC"+str(i+1) for i in range(pc)]
