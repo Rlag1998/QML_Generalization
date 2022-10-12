@@ -88,7 +88,6 @@ np.random.seed(seed=123)
 # The model is ultimately optimized with the RMSPropOptimizer and data are
 # classified according to a KNN-style classifier.
 
-
 def feature_encoding_hamiltonian(features, wires):
 
     for idx, w in enumerate(wires):
@@ -200,7 +199,6 @@ def overlaps(weights, X1=None, X2=None):
 ######################################################################
 # Below is the cost function, which takes both inter-cluster overlaps and intra-
 # cluster overlaps into consideration:
-
 
 def cost(weights, A=None, B=None):
 
@@ -463,7 +461,6 @@ plt.legend(handles=[blue_patch, cornflowerblue_patch, red_patch, lightcoral_patc
 # Below, test set classification is evaluated by means of a ``predict``
 # function to yield subsequent F1, precision, recall, accuracy and specificity
 # scores. A confusion matrix of the form (TP, FN, FP, TN) is also returned.
-
 
 def predict(n_samples, pred_low, pred_high, choice):
 
