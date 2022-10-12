@@ -27,7 +27,7 @@ Data preparation was handled by the antbees_original.py file in the embedding_me
 
 # %matplotlib inline
 import matplotlib.pyplot as plt
-import matplotlib.patches as mpatches ###
+import matplotlib.patches as mpatches
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 
 import pennylane as qml
