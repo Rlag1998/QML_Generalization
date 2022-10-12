@@ -393,7 +393,7 @@ plt.show()
 ######################################################################
 # The below code results in the post-training scatter plot.
 # It is clear that neither the test set nor training set
-# intermediate values are classified well. There are too
+# intermediate values are separated well. There are too
 # many features within image data for this quantum metric
 # learning setup to work.
 #
