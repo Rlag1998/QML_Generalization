@@ -293,6 +293,11 @@ with open(r"x1x2.txt", "w") as file2:
 # Analysis
 # --------
 #
+# Hilbert space mutual data overlap gram matrices can be used to assess
+# the separation in embedded test set datapoints. Scatter plots
+# depicting the pre-training and post-training positions of the 
+#``x_1``, ``x_2`` intermediate points can also be plotted.
+#
 # For generating mutual data overlap gram matrices, a smaller subset of
 # the test set data is used, as determined by the 'select' variable.
 
