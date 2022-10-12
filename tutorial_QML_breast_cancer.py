@@ -31,8 +31,8 @@ was not demonstrated in the original quantum metric learning code).
 
 # %matplotlib inline
 import matplotlib.pyplot as plt
-import matplotlib.patches as mpatches ###
-from mpl_toolkits.axes_grid1 import make_axes_locatable ###
+import matplotlib.patches as mpatches
+from mpl_toolkits.axes_grid1 import make_axes_locatable
 
 import pennylane as qml
 from pennylane import numpy as np
