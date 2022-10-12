@@ -23,6 +23,9 @@ adapts the work of Lloyd et al. by changing the data pre-processing steps to inc
 This tutorial aims to produce good generalization peformance for test set data (something which
 was not demonstrated in the original quantum metric learning code).
 
+More details on this topic can be found in the research paper, "Generalization Performance of Quantum Metric Learning Classifiers",
+currently in review with Biomolecules.
+
 Illustrated below is the general circuit used.
 
 |
@@ -89,20 +92,23 @@ np.random.seed(seed=123)
 # The model is ultimately optimized with the RMSPropOptimizer and data are
 # classified according to a KNN-style classifier.
 
+
 def feature_encoding_hamiltonian(features, wires):
 
     for idx, w in enumerate(wires):
         RX(features[idx], wires=w)
 
+
 def ising_hamiltonian(weights, wires, l):
 
-        # ZZ coupling
-        CNOT(wires=[wires[1], wires[0]])
-        RZ(weights[l, 0], wires=wires[0])
-        CNOT(wires=[wires[1], wires[0]])
-        # local fields
-        for idx, w in enumerate(wires):
-            RY(weights[l, idx + 1], wires=w)
+    # ZZ coupling
+    CNOT(wires=[wires[1], wires[0]])
+    RZ(weights[l, 0], wires=wires[0])
+    CNOT(wires=[wires[1], wires[0]])
+    # local fields
+    for idx, w in enumerate(wires):
+        RY(weights[l, idx + 1], wires=w)
+
 
 def QAOAEmbedding(features, weights, wires):
 
@@ -114,6 +120,7 @@ def QAOAEmbedding(features, weights, wires):
     # repeat the feature encoding once more at the end
     feature_encoding_hamiltonian(features, wires)
 
+
 ######################################################################
 # By default, the model has 30 + 12 trainable parameters - 30 for the
 # classical part of the model and 12 for the quantum part.
@@ -124,7 +131,7 @@ def QAOAEmbedding(features, weights, wires):
 # The data preparation code used to create these files can be found in
 # the `embedding_metric_learning folder <https://github.com/PennyLaneAI/qml/tree/master/demonstrations/embedding_metric_learning>`_.
 
-X = np.loadtxt("embedding_metric_learning/bc_x_array.txt", ndmin=2)  #1  pre-extracted inputs
+X = np.loadtxt("embedding_metric_learning/bc_x_array.txt", ndmin=2)  # 1  pre-extracted inputs
 Y = np.loadtxt("embedding_metric_learning/bc_y_array.txt")  # labels
 X_val = np.loadtxt(
     "embedding_metric_learning/bc_x_test_array.txt", ndmin=2
@@ -132,8 +139,8 @@ X_val = np.loadtxt(
 Y_val = np.loadtxt("embedding_metric_learning/bc_y_test_array.txt")  # validation labels
 
 # split data into two classes
-A = X[Y == -1] #benign
-B = X[Y == 1] #malignant
+A = X[Y == -1]  # benign
+B = X[Y == 1]  # malignant
 A_val = X_val[Y_val == -1]
 B_val = X_val[Y_val == 1]
 
@@ -157,6 +164,7 @@ dev = qml.device("default.qubit", wires=n_qubits)
 
 x1list = []
 x2list = []
+
 
 @qml.qnode(dev)
 def swap_test(q_weights, x1, x2):
@@ -189,7 +197,7 @@ def overlaps(weights, X1=None, X2=None):
             overlap += swap_test(q_weights, w_x1, w_x2)
 
     mean_overlap = overlap / (len(X1) * len(X2))
-    
+
     return mean_overlap
 
 
@@ -258,11 +266,11 @@ for i in range(400):
 
     # Walk one optimization step
     pars = optimizer.step(lambda w: cost(w, A=A_batch, B=B_batch), pars)
-    #print(pars)
-    #print("Step", i+1, "done.")
+    # print(pars)
+    # print("Step", i+1, "done.")
 
-    #Print the validation cost every 10 steps
-    #if i % 50 == 0 and i != 0:
+    # Print the validation cost every 10 steps
+    # if i % 50 == 0 and i != 0:
     #    cst = cost(pars, A=A_val, B=B_val)
     #    print("Cost on validation set {:2f}".format(cst))
     #    cost_list.append(cst)
@@ -273,17 +281,16 @@ for i in range(400):
 # they may be used at a future time without having to re-train the
 # initial parameters.
 
-print("quantum pars: ",pars[1])
+print("quantum pars: ", pars[1])
 with open(r"thetas.txt", "w") as file1:
     for item in pars[1]:
         file1.write("%s\n" % item)
-        
-print("classical pars: ",pars[0])
+
+print("classical pars: ", pars[0])
 with open(r"x1x2.txt", "w") as file2:
     for item in pars[0]:
         file2.write("%s\n" % item)
-    
-    
+
 
 ######################################################################
 # Analysis
@@ -291,8 +298,8 @@ with open(r"x1x2.txt", "w") as file2:
 #
 # Hilbert space mutual data overlap gram matrices can be used to assess
 # the separation in embedded test set datapoints. Scatter plots
-# depicting the pre-training and post-training positions of the 
-#``x_1``, ``x_2`` intermediate points can also be plotted.
+# depicting the pre-training and post-training positions of the
+# ``x_1``, ``x_2`` intermediate points can also be plotted.
 #
 # For generating mutual data overlap gram matrices, a smaller subset of
 # the test set data is used, as determined by the ``select`` variable.
@@ -303,20 +310,20 @@ select = 10
 ######################################################################
 # Final cost values can be printed out here.
 
-#cost_train = cost(pars, A=A[:select], B=B[:select])
-#cost_val = cost(pars, A=A_val[:select], B=B_val[:select])
+# cost_train = cost(pars, A=A[:select], B=B[:select])
+# cost_val = cost(pars, A=A_val[:select], B=B_val[:select])
 
 
-#cost_train = cost(pars, A=A, B=B)
-#cost_val = cost(pars, A=A_val, B=B_val)
-#print("Cost for pretrained parameters on training set:", cost_train)
-#print("Cost for pretrained parameters on validation set:", cost_val)
+# cost_train = cost(pars, A=A, B=B)
+# cost_val = cost(pars, A=A_val, B=B_val)
+# print("Cost for pretrained parameters on training set:", cost_train)
+# print("Cost for pretrained parameters on validation set:", cost_val)
 
 
 ######################################################################
 # Continuation of gram matrices preparation:
 
-#A_B = np.r_[A[:select], B[:select]]
+# A_B = np.r_[A[:select], B[:select]]
 A_B = np.r_[A_val[:select], B_val[:select]]
 
 
@@ -330,7 +337,7 @@ im = ax.matshow(gram_before, vmin=0, vmax=1)
 divider = make_axes_locatable(ax)
 cax = divider.append_axes("right", size="5%", pad=0.05)
 plt.colorbar(im, cax=cax)
-#plt.show()
+# plt.show()
 
 ######################################################################
 #
@@ -354,7 +361,7 @@ im = ax.matshow(gram_after, vmin=0, vmax=1)
 divider = make_axes_locatable(ax)
 cax = divider.append_axes("right", size="5%", pad=0.05)
 plt.colorbar(im, cax=cax)
-#plt.show()
+# plt.show()
 
 
 ######################################################################
@@ -373,13 +380,13 @@ plt.colorbar(im, cax=cax)
 #
 # The code below results in the pre-training scatter plot:
 
-blue_patch = mpatches.Patch(color='blue', label='Training: Benign')
-red_patch = mpatches.Patch(color='red', label='Training: Malignant')
-cornflowerblue_patch = mpatches.Patch(color='cornflowerblue', label='Test: Benign')
-lightcoral_patch = mpatches.Patch(color='lightcoral', label='Test: Malignant')
-plt.rcParams["figure.figsize"] = (8,8)
-plt.rc('xtick',labelsize=12)
-plt.rc('ytick',labelsize=12)
+blue_patch = mpatches.Patch(color="blue", label="Training: Benign")
+red_patch = mpatches.Patch(color="red", label="Training: Malignant")
+cornflowerblue_patch = mpatches.Patch(color="cornflowerblue", label="Test: Benign")
+lightcoral_patch = mpatches.Patch(color="lightcoral", label="Test: Malignant")
+plt.rcParams["figure.figsize"] = (8, 8)
+plt.rc("xtick", labelsize=12)
+plt.rc("ytick", labelsize=12)
 
 for a in A:
     intermediate_a = init_pars[0] @ a
@@ -397,10 +404,10 @@ for b in B_val:
     intermediate_b = init_pars[0] @ b
     plt.scatter(intermediate_b[:][0], intermediate_b[:][1], c="lightcoral")
 
-plt.xlabel(r'$x_1$', fontsize = 20)
-plt.ylabel(r'$x_2$', fontsize = 20)
-plt.legend(handles=[blue_patch, cornflowerblue_patch, red_patch, lightcoral_patch], fontsize = 12)
-#plt.show()
+plt.xlabel(r"$x_1$", fontsize=20)
+plt.ylabel(r"$x_2$", fontsize=20)
+plt.legend(handles=[blue_patch, cornflowerblue_patch, red_patch, lightcoral_patch], fontsize=12)
+# plt.show()
 
 ######################################################################
 #
@@ -431,11 +438,11 @@ for a in A_val:
 for b in B_val:
     intermediate_b = pars[0] @ b
     plt.scatter(intermediate_b[:][0], intermediate_b[:][1], c="lightcoral")
-    
-plt.xlabel(r'$x_1$', fontsize = 20)
-plt.ylabel(r'$x_2$', fontsize = 20)
-plt.legend(handles=[blue_patch, cornflowerblue_patch, red_patch, lightcoral_patch], fontsize = 12)
-#plt.show()
+
+plt.xlabel(r"$x_1$", fontsize=20)
+plt.ylabel(r"$x_2$", fontsize=20)
+plt.legend(handles=[blue_patch, cornflowerblue_patch, red_patch, lightcoral_patch], fontsize=12)
+# plt.show()
 
 
 ######################################################################
@@ -463,7 +470,7 @@ plt.legend(handles=[blue_patch, cornflowerblue_patch, red_patch, lightcoral_patc
 
 
 def predict(n_samples, pred_low, pred_high, choice):
-    
+
     truepos = 0
     falseneg = 0
     falsepos = 0
@@ -472,9 +479,9 @@ def predict(n_samples, pred_low, pred_high, choice):
     for i in range(pred_low, pred_high):
         pred = ""
         if choice == 0:
-            x_new = A_val[i] #Benign
+            x_new = A_val[i]  # Benign
         else:
-            x_new = B_val[i] #Malignant
+            x_new = B_val[i]  # Malignant
 
         prediction = 0
         for s in range(n_samples):
@@ -502,29 +509,30 @@ def predict(n_samples, pred_low, pred_high, choice):
                 trueneg += 1
             else:
                 falseneg += 1
-                
+
         else:
             pred = "Malignant"
             if choice == 0:
                 falsepos += 1
             else:
                 truepos += 1
-        #print("prediction: "+str(pred)+", value is "+str(prediction))
-        
-    #print(truepos, falseneg, falsepos, trueneg)
+        # print("prediction: "+str(pred)+", value is "+str(prediction))
+
+    # print(truepos, falseneg, falsepos, trueneg)
     return truepos, falseneg, falsepos, trueneg
+
 
 totals = [x + y for x, y in zip(predict(20, 0, len(A_val), 0), predict(20, 0, len(B_val), 1))]
 print(totals)
-precision = totals[0]/(totals[0]+totals[2])
-recall = totals[0]/(totals[0]+totals[1])
-accuracy = (totals[0] + totals[3])/(totals[0]+totals[1]+totals[2]+totals[3])
-specificity = totals[3]/(totals[3]+totals[2])
+precision = totals[0] / (totals[0] + totals[2])
+recall = totals[0] / (totals[0] + totals[1])
+accuracy = (totals[0] + totals[3]) / (totals[0] + totals[1] + totals[2] + totals[3])
+specificity = totals[3] / (totals[3] + totals[2])
 
-f1 = (2*precision*recall)/(precision+recall)
+f1 = (2 * precision * recall) / (precision + recall)
 print("Precision: ", precision)
 print("Recall: ", recall)
-print("Accuracy: ",accuracy)
+print("Accuracy: ", accuracy)
 print("Specificity: ", specificity)
 print("F1 Score: ", f1)
 
@@ -538,3 +546,6 @@ print("F1 Score: ", f1)
 #
 # Andrea Mari, Thomas R. Bromley, Josh Izaac, Maria Schuld, Nathan Killoran: "Transfer learning
 # in hybrid classical-quantum neural networks" arXiv preprint arXiv:1912.08278
+#
+# Jonathan Kim and Stefan Bekiranov: "Generalization of Quantum Metric Learning Classifiers"
+# submitted to Biomolecules, currently in review stage.
