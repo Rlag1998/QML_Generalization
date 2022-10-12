@@ -33,7 +33,10 @@ After all necessary data pre-processing steps, ``n`` input features are reduced 
 to ``x_1``, ``x_2`` intermediate values, which are then fed into a quantum feature map consisting of ZZ 
 entanglers, as well as RX and RY rotational gates. This results in ``2n + 12`` total parameters 
 (``2n`` from the classical part, ``12`` from the quantum feature map) which are trained and updated over
-a set number of iterations, resulting in a trained embedding.
+a set number of iterations, resulting in a trained embedding. The trained embedding is able to embed
+input datapoints in Hilbert space such that the Hilbert-Schmidt distance between datapoints of different
+classes is maximized. A linear decision boundary can then be drawn across the datapoints in Hilbert space,
+which corresponds to a complex decision boundary in classical space.
 
 Let us begin!
 """
