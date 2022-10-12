@@ -1,5 +1,5 @@
 """
-Quantum metric learning with principal component analysis
+Generalization Performance of Quantum Metric Learning Classifiers
 ======================================
 
 .. meta::
