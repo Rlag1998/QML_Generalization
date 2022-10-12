@@ -1,5 +1,5 @@
 """
-Generalization Performance of Quantum Metric Learning Classifiers (Ants & Bees, no PCA)
+Generalization Performance of Quantum Metric Learning Classifiers (Ants & Bees Image Dataset without PCA)
 ======================================
 
 .. meta::
