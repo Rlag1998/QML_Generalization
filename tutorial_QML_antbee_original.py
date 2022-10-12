@@ -38,6 +38,9 @@ input datapoints in Hilbert space such that the Hilbert-Schmidt distance between
 classes is maximized. A linear decision boundary can then be drawn across the datapoints in Hilbert space,
 which corresponds to a complex decision boundary in classical space.
 
+When using the ImageNet Ants & Bees image dataset in this demo, we observe poor generalization with this method. 
+See the breast cancer dataset demowith just 30 features per sample for an example of good generalization.
+
 Let us begin!
 """
 
