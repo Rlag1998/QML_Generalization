@@ -133,7 +133,7 @@ def QAOAEmbedding(features, weights, wires):
 # `embedding_metric_learning folder <https://github.com/PennyLaneAI/qml/tree/master/demonstrations/embedding_metric_learning>`_.
 
 X = np.loadtxt("embedding_metric_learning/ab_x_array.txt", ndmin=2)  # pre-prepared training inputs
-Y = np.loadtxt("embedding_metric_learning/ab_y_array.txt")  # labels
+Y = np.loadtxt("embedding_metric_learning/ab_y_array.txt")  # training labels
 X_val = np.loadtxt(
     "embedding_metric_learning/ab_x_test_array.txt", ndmin=2
 )  # pre-prepared validation inputs
