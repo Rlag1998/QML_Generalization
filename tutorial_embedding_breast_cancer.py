@@ -219,7 +219,7 @@ def cost(weights, A=None, B=None):
 # ``init_pars_classical`` variable is changed according to the number of
 # principal components used during data preparation (as determined by
 # the configuration of the data preparation files in the
-# ``embedding_metric_learning`` folder).
+# `embedding_metric_learning folder <https://github.com/PennyLaneAI/qml/tree/master/demonstrations/embedding_metric_learning>`_).
 
 # generate initial parameters for the quantum component, such that
 # the resulting number of trainable quantum parameters is equal to
