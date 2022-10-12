@@ -6,7 +6,7 @@ Generalization Performance of Quantum Metric Learning Classifiers (Ants & Bees, 
     :property="og:description": This demonstration illustrates the idea of training
         a quantum embedding for metric learning. This technique is used to train
         a hybrid quantum-classical data embedding to classify images of ants and bees.
-    :property="og:image": https://github.com/Rlag1998/QML_Generalization/blob/main/embedding_metric_learning/figures/All_Figures/1.3.2.png
+    :property="og:image": https://github.com/Rlag1998/QML_Generalization/blob/main/embedding_metric_learning/figures/All_Figures/1.3.2.png?raw=true
 
 *Adapted from work authored by Maria Schuld and Aroosa Ijaz*
 
