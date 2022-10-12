@@ -230,7 +230,7 @@ init_pars_quantum = np.random.normal(loc=0, scale=0.1, size=(4, 3))
 # generate initial parameters for the classical component, such that
 # the resulting number of trainable classical parameters is equal to
 # the product of the elements that make up the size attribute.
-init_pars_classical = np.random.normal(loc=0, scale=0.1, size=(2, 8))
+init_pars_classical = np.random.normal(loc=0, scale=0.1, size=(2, 16))
 
 init_pars = [init_pars_classical, init_pars_quantum]
 
@@ -330,7 +330,7 @@ im = ax.matshow(gram_before, vmin=0, vmax=1)
 divider = make_axes_locatable(ax)
 cax = divider.append_axes("right", size="5%", pad=0.05)
 plt.colorbar(im, cax=cax)
-plt.show()
+#plt.show()
 
 ######################################################################
 #
@@ -354,7 +354,7 @@ im = ax.matshow(gram_after, vmin=0, vmax=1)
 divider = make_axes_locatable(ax)
 cax = divider.append_axes("right", size="5%", pad=0.05)
 plt.colorbar(im, cax=cax)
-plt.show()
+#plt.show()
 
 
 ######################################################################
@@ -400,7 +400,7 @@ for b in B_val:
 plt.xlabel(r'$x_1$', fontsize = 20)
 plt.ylabel(r'$x_2$', fontsize = 20)
 plt.legend(handles=[blue_patch, cornflowerblue_patch, red_patch, lightcoral_patch], fontsize = 12)
-plt.show()
+#plt.show()
 
 ######################################################################
 #
@@ -435,9 +435,8 @@ for b in B_val:
 plt.xlabel(r'$x_1$', fontsize = 20)
 plt.ylabel(r'$x_2$', fontsize = 20)
 plt.legend(handles=[blue_patch, cornflowerblue_patch, red_patch, lightcoral_patch], fontsize = 12)
-plt.show()
+#plt.show()
 
-print("shape: ", pars[0].shape)
 
 ######################################################################
 #
