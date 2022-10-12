@@ -254,7 +254,7 @@ for i in range(400):
     # Walk one optimization step
     pars = optimizer.step(lambda w: cost(w, A=A_batch, B=B_batch), pars)
     #print(pars)
-    print("Step", i+1 , "done.")
+    #print("Step", i+1 , "done.")
 
     #Print the validation cost every 10 steps
     #if i % 50 == 0 and i != 0:
@@ -324,7 +324,7 @@ im = ax.matshow(gram_before, vmin=0, vmax=1)
 divider = make_axes_locatable(ax)
 cax = divider.append_axes("right", size="5%", pad=0.05)
 plt.colorbar(im, cax=cax)
-plt.show()
+#plt.show()
 
 
 ######################################################################
@@ -349,7 +349,7 @@ im = ax.matshow(gram_after, vmin=0, vmax=1)
 divider = make_axes_locatable(ax)
 cax = divider.append_axes("right", size="5%", pad=0.05)
 plt.colorbar(im, cax=cax)
-plt.show()
+#plt.show()
 
 
 ######################################################################
@@ -395,7 +395,7 @@ for a in A_val:
 plt.xlabel(r'$x_1$', fontsize = 20)
 plt.ylabel(r'$x_2$', fontsize = 20)
 plt.legend(handles=[blue_patch, cornflowerblue_patch, red_patch, lightcoral_patch], fontsize = 12)
-plt.show()
+#plt.show()
 
 ######################################################################
 #
@@ -431,9 +431,7 @@ for a in A_val:
 plt.xlabel(r'$x_1$', fontsize = 20)
 plt.ylabel(r'$x_2$', fontsize = 20)
 plt.legend(handles=[blue_patch, cornflowerblue_patch, red_patch, lightcoral_patch], fontsize = 12)
-plt.show()
-
-print("shape: ", pars[0].shape)
+#plt.show()
 
 ######################################################################
 #
@@ -506,7 +504,7 @@ def predict(n_samples, pred_low, pred_high, choice):
                 falseneg += 1
             else:
                 trueneg += 1
-        print("prediction: "+str(pred)+", value is "+str(prediction))
+        #print("prediction: "+str(pred)+", value is "+str(prediction))
         
     print(truepos, falseneg, falsepos, trueneg)
     return truepos, falseneg, falsepos, trueneg
