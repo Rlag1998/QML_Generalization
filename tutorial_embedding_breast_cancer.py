@@ -41,7 +41,8 @@ entanglers, as well as RX and RY rotational gates. This results in ``2n + 12`` t
 a set number of iterations, resulting in a trained embedding. The trained embedding is able to embed
 input datapoints in Hilbert space such that the Hilbert-Schmidt distance between datapoints of different
 classes is maximized. A linear decision boundary can then be drawn across the datapoints in Hilbert space,
-which corresponds to a complex decision boundary in classical space.
+which corresponds to a complex decision boundary in classical space. This form of embedding training is
+known as Quantum Metric Learning.
 
 Through explorations with the ImageNet Ants & Bees image dataset, we find that datasets with too many features
 show poor generalization when using this method. In this demo, we instead use a breast cancer dataset with 
