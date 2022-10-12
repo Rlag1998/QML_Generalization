@@ -24,9 +24,8 @@ Illustrated below is the general circuit used.
 |
 
 .. figure:: ../demonstrations/embedding_metric_learning/classification.png
-   :scale: 55%
-   :alt: classification
    :align: center
+   :width: 90%
    
 |
 
@@ -328,9 +327,8 @@ plt.show()
 # |
 #
 # .. figure:: ../demonstrations/embedding_metric_learning/figures/All_Figures/1.1.1.png
-#   :scale: 75%
-#   :alt: 111
 #   :align: center
+#   :width: 90%
 #
 # |
 #
@@ -354,9 +352,8 @@ plt.show()
 # |
 #
 # .. figure:: ../demonstrations/embedding_metric_learning/figures/All_Figures/1.1.2.png
-#   :scale: 75%
-#   :alt: 112
 #   :align: center
+#   :width: 90%
 #
 # |
 #
@@ -400,9 +397,8 @@ plt.show()
 # |
 #
 # .. figure:: ../demonstrations/embedding_metric_learning/figures/All_Figures/1.1.3.png
-#   :scale: 55%
-#   :alt: 113
 #   :align: center
+#   :width: 90%
 #
 # |
 #
@@ -439,9 +435,8 @@ print("shape: ", pars[0].shape)
 # |
 #
 # .. figure:: ../demonstrations/embedding_metric_learning/figures/All_Figures/1.1.4.png
-#   :scale: 55%
-#   :alt: 114
 #   :align: center
+#   :width: 90%
 #
 # |
 #
