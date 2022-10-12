@@ -34,6 +34,7 @@ Illustrated below is the general circuit used.
    :align: center
    
 |
+
 After all necessary data pre-processing steps, ``n`` input features are reduced via matrix multiplication 
 to ``x_1``, ``x_2`` intermediate values, which are then fed into a quantum feature map consisting of ZZ 
 entanglers, as well as RX and RY rotational gates. This results in ``2n + 12`` total parameters 
@@ -331,6 +332,16 @@ plt.show()
 
 
 ######################################################################
+#
+# |
+#
+# .. figure:: ../demonstrations/embedding_metric_learning/figures/All_Figures/1.2.1.png
+#   :scale: 75%
+#   :alt: 121
+#   :align: center
+#
+# |
+#
 # After training, the goal is for there to be a clear separation between
 # the two classes, such that there are four clearly defined squares of
 # mutual overlap (two yellow, two purple). However, it is clear that in this
@@ -347,6 +358,16 @@ plt.show()
 
 
 ######################################################################
+#
+# |
+#
+# .. figure:: ../demonstrations/embedding_metric_learning/figures/All_Figures/1.2.2.png
+#   :scale: 75%
+#   :alt: 122
+#   :align: center
+#
+# |
+#
 # The two-dimensional intermediate (``x_1``, ``x_2``) points can be graphed in the
 # form of scatter plots to help visualize the separation progress from
 # a different perspective.
@@ -383,6 +404,16 @@ plt.legend(handles=[blue_patch, cornflowerblue_patch, red_patch, lightcoral_patc
 plt.show()
 
 ######################################################################
+#
+# |
+#
+# .. figure:: ../demonstrations/embedding_metric_learning/figures/All_Figures/1.2.3.png
+#   :scale: 55%
+#   :alt: 123
+#   :align: center
+#
+# |
+#
 # The below code results in the post-training scatter plot.
 # It is clear that neither the test set nor training set
 # intermediate values are separated well. There are too
@@ -410,6 +441,17 @@ plt.ylabel(r'$x_2$', fontsize = 20)
 plt.legend(handles=[blue_patch, cornflowerblue_patch, red_patch, lightcoral_patch], fontsize = 12)
 plt.show()
 
+######################################################################
+#
+# |
+#
+# .. figure:: ../demonstrations/embedding_metric_learning/figures/All_Figures/1.2.4.png
+#   :scale: 55%
+#   :alt: 124
+#   :align: center
+#
+# |
+#
 
 ######################################################################
 # Classification
