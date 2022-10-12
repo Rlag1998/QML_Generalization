@@ -18,8 +18,8 @@ by training a hybrid classical-quantum data embedding to classify breast cancer 
 Lloyd et al.'s appraoch was inspired by `Mari et al. (2019) <https://arxiv.org/abs/1912.08278>`_,
 (see also this `tutorial <https://pennylane.ai/qml/demos/tutorial_quantum_transfer_learning.html>`_).
 This tutorial and its corresponding preparation steps (as included in ``cancer_general.py`` and
-``cancer_non-PCA.py`` files in the ``embedding_metric_learning`` folder) adapts the work of Lloyd et al. by changing
-the data pre-processing steps to include principal component analysis for feature reduction.
+``cancer_non-PCA.py`` files in the `embedding_metric_learning folder <https://github.com/PennyLaneAI/qml/tree/master/demonstrations/embedding_metric_learning>`_) 
+adapts the work of Lloyd et al. by changing the data pre-processing steps to include principal component analysis for feature reduction.
 This tutorial aims to produce good generalization peformance for test set data (something which
 was not demonstrated in the original quantum metric learning code).
 
@@ -122,7 +122,7 @@ def QAOAEmbedding(features, weights, wires):
 # features of the data, then carrying out principal component analysis
 # on them to reduce the number of trainable parameters.
 # The data preparation code used to create these files can be found in
-# the ``embedding_metric_learning`` folder.
+# the `embedding_metric_learning folder <https://github.com/PennyLaneAI/qml/tree/master/demonstrations/embedding_metric_learning>`_.
 
 X = np.loadtxt("embedding_metric_learning/bc_x_array.txt", ndmin=2)  #1  pre-extracted inputs
 Y = np.loadtxt("embedding_metric_learning/bc_y_array.txt")  # labels
