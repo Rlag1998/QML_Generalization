@@ -191,7 +191,7 @@ def overlaps(weights, X1=None, X2=None):
 
 ######################################################################
 # Below is the cost function, which takes both inter-cluster overlaps and intra-
-# cluster overlaps into consideration.
+# cluster overlaps into consideration:
 
 
 def cost(weights, A=None, B=None):
