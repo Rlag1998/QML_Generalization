@@ -339,7 +339,8 @@ plt.show()
 ######################################################################
 # After training, the goal is for there to be a clear separation between
 # the two classes, such that there are four clearly defined squares of
-# mutual overlap (two yellow, two purple).
+# mutual overlap (two yellow, two purple). However, it is clear that in this
+# case that there is still a lack of test set separation after training.
 #
 
 gram_after = [[overlaps(pars, X1=[x1], X2=[x2]) for x1 in A_B] for x2 in A_B]
@@ -391,6 +392,10 @@ plt.show()
 
 ######################################################################
 # The below code results in the post-training scatter plot.
+# It is clear that neither the test set nor training set
+# intermediate values are classified well. There are too
+# many features within image data for this quantum metric
+# learning setup to work.
 #
 
 for b in B:
