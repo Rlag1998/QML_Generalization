@@ -136,7 +136,7 @@ X = np.loadtxt("embedding_metric_learning/ab_x_array.txt", ndmin=2)  # pre-prepa
 Y = np.loadtxt("embedding_metric_learning/ab_y_array.txt")  # labels
 X_val = np.loadtxt(
     "embedding_metric_learning/ab_x_test_array.txt", ndmin=2
-)  # pre-prepared test inputs
+)  # pre-prepared validation inputs
 Y_val = np.loadtxt("embedding_metric_learning/ab_y_test_array.txt")  # validation labels
 
 # split data into two classes
