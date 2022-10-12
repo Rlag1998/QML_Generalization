@@ -384,7 +384,7 @@ plt.show()
 ######################################################################
 # The below code results in the post-training scatter plot.
 # It is clear only the training set intermediate values are
-# classified well. There are too many features within the image
+# separated well. There are too many features within image
 # data, resulting in poor generalization due to overfitting.
 #
 
