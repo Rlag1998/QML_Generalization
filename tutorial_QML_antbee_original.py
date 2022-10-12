@@ -17,7 +17,7 @@ This tutorial uses the idea of quantum embeddings for metric learning presented 
 by training a hybrid classical-quantum data embedding to classify images of ants and bees.
 Their example was inspired by `Mari et al. (2019) <https://arxiv.org/abs/1912.08278>`_,
 (see also this `tutorial <https://pennylane.ai/qml/demos/tutorial_quantum_transfer_learning.html>`_).
-Data preparation is handled by the ``antbees_original.py file`` in the embedding_metric_learning folder.
+Data preparation is handled by the ``antbees_original.py`` file in the ``embedding_metric_learning`` folder.
 
 Illustrated below is the general circuit used.
 
