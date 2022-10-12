@@ -515,7 +515,7 @@ def predict(n_samples, pred_low, pred_high, choice):
                 trueneg += 1
         #print("prediction: "+str(pred)+", value is "+str(prediction))
         
-    print(truepos, falseneg, falsepos, trueneg)
+    #print(truepos, falseneg, falsepos, trueneg)
     return truepos, falseneg, falsepos, trueneg
 
 totals = [x + y for x, y in zip(predict(20, 0, len(A_val), 0), predict(20, 0, len(B_val), 1))]
