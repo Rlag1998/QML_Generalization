@@ -7,9 +7,9 @@ Quantum metric learning with principal component analysis
         a quantum embedding for metric learning. This technique is used to train
         a hybrid quantum-classical data embedding to classify images of ants and bees.
 
-**Adapted from work authored by Maria Schuld and Aroosa Ijaz**
+*Adapted from work authored by Maria Schuld and Aroosa Ijaz*
 
-**Authors: Jonathan Kim and Stefan Bekiranov**
+*Authors: Jonathan Kim and Stefan Bekiranov*
 
 This tutorial uses the idea of quantum embeddings for metric learning presented in
 `Lloyd, Schuld, Ijaz, Izaac, Killoran (2020) <https://arxiv.org/abs/2001.03622>`_,
