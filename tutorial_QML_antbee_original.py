@@ -330,7 +330,8 @@ plt.show()
 ######################################################################
 # After training, the goal is for there to be a clear separation between
 # the two classes, such that there are four clearly defined squares of
-# mutual overlap (two yellow, two purple).
+# mutual overlap (two yellow, two purple). However, it is clear that in this
+# case there is still a lack of test set separation after training.
 #
 
 gram_after = [[overlaps(pars, X1=[x1], X2=[x2]) for x1 in A_B] for x2 in A_B]
@@ -344,7 +345,7 @@ plt.show()
 
 
 ######################################################################
-# The two-dimensional intermediate (x1, x2) points can be graphed in the
+# The two-dimensional intermediate (``x_1``, ``x_2``) points can be graphed in the
 # form of scatter plots to help visualize the separation progress from
 # a different perspective.
 #
@@ -382,6 +383,9 @@ plt.show()
 
 ######################################################################
 # The below code results in the post-training scatter plot.
+# It is clear only the training set intermediate values are
+# classified well. There are too many features within the image
+# data, resulting in poor generalization due to overfitting.
 #
 
 for b in B:
