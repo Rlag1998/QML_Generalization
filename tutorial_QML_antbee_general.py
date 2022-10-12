@@ -123,6 +123,7 @@ print(B_val.shape)
 
 ######################################################################
 # Quantum node initialization.
+#
 
 n_features = 2
 n_qubits = 2 * n_features + 1
