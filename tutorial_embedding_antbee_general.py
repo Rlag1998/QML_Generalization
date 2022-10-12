@@ -146,7 +146,7 @@ print(B_val.shape)
 
 
 ######################################################################
-# Quantum node initialization.
+# Quantum node initialization:
 
 n_features = 2
 n_qubits = 2 * n_features + 1
@@ -155,7 +155,7 @@ dev = qml.device("default.qubit", wires=n_qubits)
 
 
 ######################################################################
-# SWAP test for overlap measurement.
+# SWAP test for overlap measurement:
 
 x1list = []
 x2list = []
@@ -196,7 +196,7 @@ def overlaps(weights, X1=None, X2=None):
 
 
 ######################################################################
-# The cost function, which takes both inter-cluster overlaps and intra-
+# Below is the cost function, which takes both inter-cluster overlaps and intra-
 # cluster overlaps into consideration.
 
 
@@ -316,7 +316,7 @@ select = 10
 
 
 ######################################################################
-# Continuation of gram matrices preparation
+# Continuation of gram matrices preparation:
 
 #A_B = np.r_[A[:select], B[:select]]
 A_B = np.r_[A_val[:select], B_val[:select]]
@@ -374,7 +374,7 @@ plt.colorbar(im, cax=cax)
 # form of scatter plots to help visualize the separation progress from
 # a different perspective.
 #
-# The code below results in the pre-training scatter plot.
+# The code below results in the pre-training scatter plot:
 
 red_patch = mpatches.Patch(color='red', label='Training: Bee') 
 blue_patch = mpatches.Patch(color='blue', label='Training: Ant') 
