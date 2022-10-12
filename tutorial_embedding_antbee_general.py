@@ -18,11 +18,10 @@ by training a hybrid classical-quantum data embedding to classify images of ants
 Their example was inspired by `Mari et al. (2019) <https://arxiv.org/abs/1912.08278>`_,
 (see also this `tutorial <https://pennylane.ai/qml/demos/tutorial_quantum_transfer_learning.html>`_).
 This tutorial and its preparation steps (as included in ``the antsbees_general.py`` and
-``antsbees_general_no_resnet.py`` files in the ``embedding_metric_learning`` folder)
-adapts the work of Lloyd et al. by changing the data pre-processing steps to include
-principal component analysis for feature reduction. This tutorial aims to produce
-good generalization performance for test set data (something which was not demonstrated
-in the original quantum metric learning code).
+``antsbees_general_no_resnet.py`` files in the `embedding_metric_learning folder <https://github.com/PennyLaneAI/qml/tree/master/demonstrations/embedding_metric_learning>`_)
+adapts the work of Lloyd et al. by changing the data pre-processing steps to include principal component analysis for feature reduction.
+This tutorial aims to produce good generalization performance for test set data (something which 
+was not demonstrated in the original quantum metric learning code).
 
 Illustrated below is the general circuit used.
 
@@ -125,7 +124,7 @@ def QAOAEmbedding(features, weights, wires):
 # final layer) and carrying out principal component analysis on the output to
 # reduce the number of trainable parameters.
 # The data preparation code used to create these files can be found in the
-# ``embedding_metric_learning`` folder.
+# `embedding_metric_learning folder <https://github.com/PennyLaneAI/qml/tree/master/demonstrations/embedding_metric_learning>`_.
 
 X = np.loadtxt("embedding_metric_learning/ab_x_array.txt", ndmin=2)  #1  pre-extracted inputs
 Y = np.loadtxt("embedding_metric_learning/ab_y_array.txt")  # labels
@@ -222,7 +221,7 @@ def cost(weights, A=None, B=None):
 # ``init_pars_classical`` variable is changed according to the number of
 # principal components used during data preparation (as determined by
 # the configuration of the data preparation files in the
-# ``embedding_metric_learning`` folder).
+# `embedding_metric_learning folder <https://github.com/PennyLaneAI/qml/tree/master/demonstrations/embedding_metric_learning>`_).
 
 
 # generate initial parameters for the quantum component, such that
