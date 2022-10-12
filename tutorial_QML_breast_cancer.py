@@ -1,5 +1,5 @@
 """
-Quantum metric learning with principal component analysis
+Generalization Performance of Quantum Metric Learning Classifiers (Breast Cancer)
 ======================================
 
 .. meta::
@@ -38,6 +38,10 @@ to ``x_1``, ``x_2`` intermediate values, which are then fed into a quantum featu
 entanglers, as well as RX and RY rotational gates. This results in ``2n + 12`` total parameters 
 (``2n`` from the classical part, ``12`` from the quantum feature map) which are trained and updated over
 a set number of iterations, resulting in a trained embedding.
+
+Through explorations with an Ants & Bees image dataset, we find that datasets with too many features
+show poor generalization when using this method. In this demo, we instead use a breast cancer dataset with 
+just 30 features per sample.
 
 Let us begin!
 """
@@ -335,7 +339,8 @@ plt.show()
 ######################################################################
 # After training, the goal is for there to be a clear separation between
 # the two classes, such that there are four clearly defined squares of
-# mutual overlap (two yellow, two purple).
+# mutual overlap (two yellow, two purple). This separation has been
+# achieved.
 #
 
 gram_after = [[overlaps(pars, X1=[x1], X2=[x2]) for x1 in A_B] for x2 in A_B]
@@ -349,7 +354,7 @@ plt.show()
 
 
 ######################################################################
-# The two-dimensional intermediate (x1, x2) points can be graphed in the
+# The two-dimensional intermediate (``x_1``, ``x_2``) points can be graphed in the
 # form of scatter plots to help visualize the separation progress from
 # a different perspective.
 #
@@ -387,6 +392,8 @@ plt.show()
 
 ######################################################################
 # The below code results in the post-training scatter plot.
+# It is clear that both the training set and set set intermediate values
+# separated reasonably well in two dimensions, indicating good generalization.
 #
 
 for a in A:
