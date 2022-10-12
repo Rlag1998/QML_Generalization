@@ -1,5 +1,5 @@
 """
-Generalization Performance of Quantum Metric Learning Classifiers
+Generalization Performance of Quantum Metric Learning Classifiers (Ants & Bees, PCA)
 ======================================
 
 .. meta::
@@ -354,7 +354,7 @@ plt.show()
 
 
 ######################################################################
-# The two-dimensional intermediate (x1, x2) points can be graphed in the
+# The two-dimensional intermediate (``x_1``, ``x_2``) points can be graphed in the
 # form of scatter plots to help visualize the separation progress from
 # a different perspective.
 #
