@@ -366,7 +366,7 @@ plt.legend(handles=[blue_patch, cornflowerblue_patch, red_patch, lightcoral_patc
 plt.show()
 
 ######################################################################
-# The below code results in the post-training scatter plot (after 1500 iterations).
+# The below code results in the post-training scatter plot.
 #
 
 for a in A:
