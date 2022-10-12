@@ -218,14 +218,15 @@ init_pars = [init_pars_classical, init_pars_quantum]
 
 ######################################################################
 # The RMSPropOptimizer is used with a step size of 0.01 and batch size
-# of 10 to optimize the model over 400 iterations. The 'pars' variable
+# of 5 to optimize the model over 400 iterations. The 'pars' variable
 # is updated after every iteration.
 #
-# Note: The results generated in the 'figures' folder used 1500 iterations.
+# Note: The results generated in the 'figures' folder used a batch
+# size of 10 for 1500 iterations.
 #
 
 optimizer = qml.RMSPropOptimizer(stepsize=0.01)
-batch_size = 10
+batch_size = 5
 pars = init_pars
 
 cost_list = []
