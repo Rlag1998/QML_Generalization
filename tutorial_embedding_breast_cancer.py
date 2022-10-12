@@ -240,8 +240,8 @@ init_pars = [init_pars_classical, init_pars_quantum]
 # of 5 to optimize the model over 400 iterations. The ``pars`` variable
 # is updated after every iteration.
 #
-# Note: The results in the ``embedding_metric_learning/figures``
-# folder used a batch size of 10 for 1500 iterations.
+# Note: All subsequent figure results used a batch
+# size of 10 with 1500 iterations.
 
 optimizer = qml.RMSPropOptimizer(stepsize=0.01)
 batch_size = 5
@@ -259,7 +259,7 @@ for i in range(400):
     # Walk one optimization step
     pars = optimizer.step(lambda w: cost(w, A=A_batch, B=B_batch), pars)
     #print(pars)
-    print("Step", i+1, "done.")
+    #print("Step", i+1, "done.")
 
     #Print the validation cost every 10 steps
     #if i % 50 == 0 and i != 0:
@@ -509,7 +509,7 @@ def predict(n_samples, pred_low, pred_high, choice):
                 falsepos += 1
             else:
                 truepos += 1
-        print("prediction: "+str(pred)+", value is "+str(prediction))
+        #print("prediction: "+str(pred)+", value is "+str(prediction))
         
     print(truepos, falseneg, falsepos, trueneg)
     return truepos, falseneg, falsepos, trueneg
