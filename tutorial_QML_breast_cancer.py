@@ -96,7 +96,7 @@ def QAOAEmbedding(features, weights, wires):
 # features of the data, then carrying out principal component analysis
 # on them to reduce the number of trainable parameters.
 # The data preparation code used to create these files can be found in
-# the embedding_metric_learning folder.
+# the ``embedding_metric_learning`` folder.
 #
 
 X = np.loadtxt("embedding_metric_learning/bc_x_array.txt", ndmin=2)  #1  pre-extracted inputs
@@ -192,11 +192,11 @@ def cost(weights, A=None, B=None):
 # ------------
 # The intial classical and quantum parameters are generated at random.
 #
-# The lattermost integer belonging to the 'size' attribute of the
-# init_pars_classical variable is changed according to the number of
+# The lattermost integer belonging to the ``size`` attribute of the
+# ``init_pars_classical`` variable is changed according to the number of
 # principal components used during data preparation (as determined by
 # the configuration of the data preparation files in the
-# embedding_metric_learning folder).
+# ``embedding_metric_learning`` folder).
 #
 
 # generate initial parameters for the quantum component, such that
@@ -215,10 +215,10 @@ init_pars = [init_pars_classical, init_pars_quantum]
 
 ######################################################################
 # The RMSPropOptimizer is used with a step size of 0.01 and batch size
-# of 5 to optimize the model over 400 iterations. The 'pars' variable
+# of 5 to optimize the model over 400 iterations. The ``pars`` variable
 # is updated after every iteration.
 #
-# Note: The results generated in the 'figures' folder used a batch
+# Note: The results generated in the ``figures`` folder used a batch
 # size of 10 for 1500 iterations.
 #
 
@@ -246,7 +246,6 @@ for i in range(400):
     #    print("Cost on validation set {:2f}".format(cst))
     #    cost_list.append(cst)
 
-print("broken")
 
 ######################################################################
 # The quantum and classical parameters are saved into txt files so
@@ -271,7 +270,7 @@ with open(r"x1x2.txt", "w") as file2:
 # --------
 #
 # For generating mutual data overlap gram matrices, a smaller subset of
-# the test set data is used, as determined by the 'select' variable.
+# the test set data is used, as determined by the ``select`` variable.
 #
 
 select = 10
@@ -401,7 +400,7 @@ print("shape: ", pars[0].shape)
 # datapoint based on the datapoint's degree of overlap with each of the two
 # separated classes of the training set data.
 #
-# Below, test set classification is evaluated by means of a 'predict'
+# Below, test set classification is evaluated by means of a ``predict``
 # function to yield subsequent F1, precision, recall, accuracy and specificity
 # scores. A confusion matrix of the form (TP, FN, FP, TN) is also returned.
 #
