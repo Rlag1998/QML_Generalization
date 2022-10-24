@@ -19,7 +19,7 @@ Lloyd et al.'s appraoch was inspired by `Mari et al. (2019) <https://arxiv.org/a
 (see also this `tutorial <https://pennylane.ai/qml/demos/tutorial_quantum_transfer_learning.html>`_). 
 This tutorial and its corresponding preparation steps (as included in the ``cancer_general.py`` and 
 ``cancer_non-PCA.py`` files in the `embedding_metric_learning folder <https://github.com/PennyLaneAI/qml/tree/master/demonstrations/embedding_metric_learning>`_) 
-adapts the work of Lloyd et al. by changing the data pre-processing steps, which includes the use of principal component analysis for feature reduction. 
+adapts the work of Lloyd et al. by changing the data pre-processing steps, including the use of principal component analysis for feature reduction. 
 This tutorial aims to produce good generalization peformance for test set data (something that 
 was not demonstrated in the original quantum metric learning code).
 
