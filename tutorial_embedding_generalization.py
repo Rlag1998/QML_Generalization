@@ -123,8 +123,10 @@ def QAOAEmbedding(features, weights, wires):
 
 
 ######################################################################
-# By default, the model has 30 + 12 trainable parameters - 30 for the 
-# classical part of the model and 12 for the quantum part.
+# By default, the model has 72 trainable parameters - 30 x 2 for 
+# the classical part of the model and 12 for the quantum part.
+# (For an ``n`` number of linear parameters, we have ``2n + 12``
+# trainable parameters.)
 #
 # The following datafiles were created by normalizing the 30 clinical 
 # features of the data, then carrying out principal component analysis 
