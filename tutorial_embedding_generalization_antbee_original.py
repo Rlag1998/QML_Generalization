@@ -159,10 +159,6 @@ dev = qml.device("default.qubit", wires=n_qubits)
 ######################################################################
 # SWAP test for overlap measurement:
 
-x1list = []
-x2list = []
-
-
 @qml.qnode(dev)
 def swap_test(q_weights, x1, x2):
 
