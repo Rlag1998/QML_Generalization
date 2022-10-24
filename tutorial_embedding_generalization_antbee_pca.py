@@ -19,7 +19,7 @@ Their example was inspired by `Mari et al. (2019) <https://arxiv.org/abs/1912.08
 (see also this `tutorial <https://pennylane.ai/qml/demos/tutorial_quantum_transfer_learning.html>`_). 
 This tutorial and its preparation steps (as included in ``the antsbees_general.py`` and 
 ``antsbees_general_no_resnet.py`` files in the `embedding_metric_learning folder <https://github.com/PennyLaneAI/qml/tree/master/demonstrations/embedding_metric_learning>`_) 
-adapts the work of Lloyd et al. by changing the data pre-processing steps, which includes the use of principal component analysis for feature reduction. 
+adapts the work of Lloyd et al. by changing the data pre-processing steps, including the use of principal component analysis for feature reduction. 
 This tutorial aims to produce good generalization performance for test set data (something that 
 was not demonstrated in the original quantum metric learning code).
 
