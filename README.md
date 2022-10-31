@@ -8,7 +8,7 @@ _Correspondence: sb3de@virginia.edu_
 
 More details on the following topic can be found in ["Generalization Performance of Quantum Metric Learning Classifiers"](https://doi.org/10.3390/biom12111576).
 
-============================================================================================
+======================================================
 
 This code demonstrates the generalization performance of quantum metric learning ('quantum embedding') classifiers.
 
