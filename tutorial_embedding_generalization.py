@@ -131,7 +131,7 @@ def QAOAEmbedding(features, weights, wires):
 # features of the data, then carrying out principal component analysis 
 # on them to reduce the number of trainable parameters. 
 # The data preparation code used to create these files can be found in 
-# the `embedding_metric_learning folder <https://github.com/PennyLaneAI/qml/tree/master/demonstrations/embedding_metric_learning>`_.
+# the `embedding_metric_learning folder <https://github.com/Rlag1998/QML_Generalization/tree/main/embedding_metric_learning>`_.
 
 X = np.loadtxt("embedding_metric_learning/bc_x_array.txt", ndmin=2)  # pre-prepared training inputs
 Y = np.loadtxt("embedding_metric_learning/bc_y_array.txt")  # training labels
