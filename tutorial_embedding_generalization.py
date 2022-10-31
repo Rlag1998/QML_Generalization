@@ -23,8 +23,7 @@ adapts the work of Lloyd et al. by changing the data pre-processing steps, inclu
 This tutorial aims to produce good generalization peformance for test set data (something that 
 was not demonstrated in the original quantum metric learning code).
 
-More details on this topic can be found in the research paper, "Generalization Performance of Quantum Metric Learning Classifiers", 
-currently in review with Biomolecules.
+More details on this topic can be found in the research paper, `Generalization Performance of Quantum Metric Learning Classifiers <https://doi.org/10.3390/biom12111576>`_. 
 
 Illustrated below is the general circuit used.
 
