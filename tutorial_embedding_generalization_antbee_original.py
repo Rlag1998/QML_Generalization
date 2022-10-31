@@ -26,7 +26,7 @@ Illustrated below is the general circuit used.
 
 |
 
-.. figure:: ../demonstrations/embedding_metric_learning/classification.png
+.. figure:: ../embedding_metric_learning/classification.png
    :align: center
    :width: 90%
    
@@ -335,7 +335,7 @@ plt.colorbar(im, cax=cax)
 #
 # |
 #
-# .. figure:: ../demonstrations/embedding_metric_learning/figures/All_Figures/1.1.1.png
+# .. figure:: ../embedding_metric_learning/figures/All_Figures/1.1.1.png
 #   :align: center
 #   :width: 90%
 #
@@ -360,7 +360,7 @@ plt.colorbar(im, cax=cax)
 #
 # |
 #
-# .. figure:: ../demonstrations/embedding_metric_learning/figures/All_Figures/1.1.2.png
+# .. figure:: ../embedding_metric_learning/figures/All_Figures/1.1.2.png
 #   :align: center
 #   :width: 90%
 #
@@ -405,7 +405,7 @@ plt.legend(handles=[blue_patch, cornflowerblue_patch, red_patch, lightcoral_patc
 #
 # |
 #
-# .. figure:: ../demonstrations/embedding_metric_learning/figures/All_Figures/1.1.3.png
+# .. figure:: ../embedding_metric_learning/figures/All_Figures/1.1.3.png
 #   :align: center
 #   :width: 90%
 #
@@ -441,7 +441,7 @@ plt.legend(handles=[blue_patch, cornflowerblue_patch, red_patch, lightcoral_patc
 #
 # |
 #
-# .. figure:: ../demonstrations/embedding_metric_learning/figures/All_Figures/1.1.4.png
+# .. figure:: ../embedding_metric_learning/figures/All_Figures/1.1.4.png
 #   :align: center
 #   :width: 90%
 #
