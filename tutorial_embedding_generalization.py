@@ -18,7 +18,7 @@ by training a hybrid classical-quantum data embedding to classify breast cancer 
 Lloyd et al.'s appraoch was inspired by `Mari et al. (2019) <https://arxiv.org/abs/1912.08278>`_ 
 (see also this `tutorial <https://pennylane.ai/qml/demos/tutorial_quantum_transfer_learning.html>`_). 
 This tutorial and its corresponding preparation steps (as included in the ``cancer_general.py`` and 
-``cancer_non-PCA.py`` files in the `embedding_metric_learning folder <https://github.com/PennyLaneAI/qml/tree/master/demonstrations/embedding_metric_learning>`_) 
+``cancer_non-PCA.py`` files in the `embedding_metric_learning folder <https://github.com/Rlag1998/QML_Generalization/tree/main/embedding_metric_learning>`_) 
 adapts the work of Lloyd et al. by changing the data pre-processing steps, including the use of principal component analysis for feature reduction. 
 This tutorial aims to produce good generalization peformance for test set data (something that 
 was not demonstrated in the original quantum metric learning code).
@@ -224,7 +224,7 @@ def cost(weights, A=None, B=None):
 # ``init_pars_classical`` variable is changed according to the number of 
 # principal components used during data preparation (as determined by 
 # the configuration of the data preparation files in the 
-# `embedding_metric_learning folder <https://github.com/PennyLaneAI/qml/tree/master/demonstrations/embedding_metric_learning>`_).
+# `embedding_metric_learning folder <https://github.com/Rlag1998/QML_Generalization/tree/main/embedding_metric_learning>`_).
 
 # generate initial parameters for the quantum component, such that
 # the resulting number of trainable quantum parameters is equal to
