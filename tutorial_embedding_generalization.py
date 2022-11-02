@@ -569,5 +569,5 @@ print("F1 Score: ", f1)
 # Andrea Mari, Thomas R. Bromley, Josh Izaac, Maria Schuld, Nathan Killoran: "Transfer learning 
 # in hybrid classical-quantum neural networks" arXiv preprint arXiv:1912.08278.
 #
-# Jonathan Kim and Stefan Bekiranov: "Generalization of Quantum Metric Learning Classifiers",  
+# Jonathan Kim and Stefan Bekiranov: "Generalization performance of quantum metric learning classifiers",  
 # https://doi.org/10.3390/biom12111576.
