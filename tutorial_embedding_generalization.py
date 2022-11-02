@@ -35,7 +35,7 @@ Illustrated below is the general circuit used.
    
 |
 
-After all necessary data pre-processing steps, ``n`` input features are reduced via matrix multiplication 
+After any linear pre-processing steps, ``n`` input features are reduced via matrix multiplication 
 to ``x_1``, ``x_2`` intermediate values, which are then fed into a quantum feature map consisting of ZZ 
 entanglers, as well as RX and RY rotational gates. This results in ``2n + 12`` total parameters 
 (``2n`` from the classical part, ``12`` from the quantum feature map) which are trained and updated over 
