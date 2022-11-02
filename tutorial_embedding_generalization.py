@@ -15,7 +15,7 @@ Generalization of Quantum Metric Learning Classifiers (Breast Cancer Dataset)
 This tutorial uses the idea of quantum embeddings for metric learning presented in 
 `Lloyd, Schuld, Ijaz, Izaac, Killoran (2020) <https://arxiv.org/abs/2001.03622>`_ 
 by training a hybrid classical-quantum data embedding to classify breast cancer data. 
-Lloyd et al.'s appraoch was inspired by `Mari et al. (2019) <https://arxiv.org/abs/1912.08278>`_ 
+Lloyd et al.'s approach was inspired by `Mari et al. (2019) <https://arxiv.org/abs/1912.08278>`_ 
 (see also this `tutorial <https://pennylane.ai/qml/demos/tutorial_quantum_transfer_learning.html>`_). 
 This tutorial and its corresponding preparation steps (as included in the ``cancer_general.py`` and 
 ``cancer_non-PCA.py`` files in the `embedding_metric_learning folder <https://github.com/Rlag1998/QML_Generalization/tree/main/embedding_metric_learning>`_) 
