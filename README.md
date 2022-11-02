@@ -18,6 +18,8 @@ Below is the general circuit representing a quantum metric learning circuit:
 
 ![](embedding_metric_learning/classification.png)
 
+The circuit takes classical inputs parameters, ``x1`` and  ``x2``, alongside 'quantum' parameters denoted by $\theta$
+
 By using this code, the effects of varying the number of input parameters through different datasets and dimensional reduction methods can be explored. Precision, recall and F1 scores are used alongside training cost & test cost to assess how well each trained model generalizes for test data. More details on this topic can be found in the research paper, [Generalization Performance of Quantum Metric Learning Classifiers](https://doi.org/10.3390/biom12111576). 
 
 ======================================================
