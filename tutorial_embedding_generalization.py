@@ -235,7 +235,7 @@ init_pars_quantum = np.random.normal(loc=0, scale=0.1, size=(4, 3))
 # generate initial parameters for the classical component, such that
 # the resulting number of trainable classical parameters is equal to
 # the product of the elements that make up the 'size' attribute.
-init_pars_classical = np.random.normal(loc=0, scale=0.1, size=(2, 16))
+init_pars_classical = np.random.normal(loc=0, scale=0.1, size=(2, 4))
 
 init_pars = [init_pars_classical, init_pars_quantum]
 
@@ -341,7 +341,7 @@ plt.show()
 #
 # |
 #
-# .. figure:: ../embedding_metric_learning/figures/All_Figures/3.3.1.png
+# .. figure:: ../embedding_metric_learning/figures/All_Figures/3.5.1.png
 #   :align: center
 #   :width: 90%
 #
@@ -366,7 +366,7 @@ plt.show()
 #
 # |
 #
-# .. figure:: ../embedding_metric_learning/figures/All_Figures/3.3.2.png
+# .. figure:: ../embedding_metric_learning/figures/All_Figures/3.5.2.png
 #   :align: center
 #   :width: 90%
 #
@@ -411,7 +411,7 @@ plt.show()
 #
 # |
 #
-# .. figure:: ../embedding_metric_learning/figures/All_Figures/3.3.3.png
+# .. figure:: ../embedding_metric_learning/figures/All_Figures/3.5.3.png
 #   :align: center
 #   :width: 90%
 #
@@ -447,7 +447,7 @@ plt.show()
 #
 # |
 #
-# .. figure:: ../embedding_metric_learning/figures/All_Figures/3.3.4.png
+# .. figure:: ../embedding_metric_learning/figures/All_Figures/3.5.4.png
 #   :align: center
 #   :width: 90%
 #
