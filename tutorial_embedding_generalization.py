@@ -1,5 +1,5 @@
 """
-Generalization Performance of Quantum Metric Learning Classifiers (Breast Cancer Dataset)
+Generalization of Quantum Metric Learning Classifiers (Breast Cancer Dataset)
 ======================================
 
 .. meta::
