@@ -6,8 +6,6 @@ _Adapted from work authored by Maria Schuld and Aroosa Ijaz_
 
 _Correspondence: sb3de@virginia.edu_
 
-======================================================
-
 This code demonstrates the generalization performance of 'quantum metric learning' classifiers.
 Quantum metric learning is first introduced in [Lloyd, Schuld, Ijaz, Izaac, Killoran (2020)](https://arxiv.org/abs/2001.03622) 
 and is used to train a quantum embedding, which can be used for classifying data. Quantum embeddings are learned by maximizing 
@@ -18,6 +16,7 @@ which represents a complex decision boundary in the original feature space.
 
 More details on this topic can be found in the research paper, [Generalization Performance of Quantum Metric Learning Classifiers](https://doi.org/10.3390/biom12111576). 
 
+======================================================
 
 The resulting models are used to classify breast cancer data and ant/bee image data.
 
