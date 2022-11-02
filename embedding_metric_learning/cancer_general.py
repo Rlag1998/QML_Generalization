@@ -6,7 +6,7 @@ from sklearn.decomposition import PCA
 import matplotlib.pyplot as plt
 
 np.random.seed(seed=1)
-pc = 16
+pc = 4
 
 breast = load_breast_cancer()
 breast_data = breast.data
