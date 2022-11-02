@@ -76,8 +76,8 @@ np.random.seed(seed=123)
 #
 # Quantum metric learning is used to train a quantum embedding, which is 
 # used for classifying data. Quantum embeddings are learned by maximizing 
-# Hilbert-Schmidt distance of datapoints from two classes. After training, 
-# the datapoints of different classes become maximally separated in Hilbert 
+# Hilbert-Schmidt distances of datapoints from two classes. After training, 
+# datapoints of different classes become maximally separated in Hilbert 
 # space. This results in a simple linear decision boundary in Hilbert space 
 # which represents a complex decision boundary in the original feature space.
 #
