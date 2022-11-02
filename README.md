@@ -1,4 +1,4 @@
-# Quantum Metric Learning Generalization
+# Generalization of Quantum Metric Learning Classifiers
 
 _Authors: Jonathan Kim and Stefan Bekiranov_
 
@@ -24,13 +24,13 @@ The resulting models are used to classify breast cancer data and ant/bee image d
 
 - The ant/bee image data comes from the ImageNet Hymenoptera dataset and each image can be classified as either 'ant' or 'bee'.
 
-Data preparation files and resulting txt files can be found in the _embedding_metric_learning_ folder.
+Data preparation files and resulting txt files can be found in the ``embedding_metric_learning`` folder.
 
-The tutorial_embedding_generalization_antbee_original.py file can be run after running the antbees_original.py data preparation file to produce results similar to those seen in Lloyd et al.'s 2020 work, ["Quantum Embeddings for Machine Learning"](https://arxiv.org/abs/2001.03622). Hilbert space mutual data overlap gram matrices and intermediary scatter plots are produced when tutorial_embedding_antbee_original.py is run.
+The ``tutorial_embedding_generalization_antbee_original.py`` file can be run after running the ``antsbees_original.py`` data preparation file to produce results similar to those seen in Lloyd et al.'s 2020 work, ["Quantum Embeddings for Machine Learning"](https://arxiv.org/abs/2001.03622). Hilbert space mutual data overlap gram matrices and intermediary scatter plots are produced when ``tutorial_embedding_generalization_antbee_original.py`` is run. Resulting test set precision, recall and F1 scores are also returned.
 
-The tutorial_embedding_generalization_antbee_pca.py file can be run after running the antsbees_general.py data preparation file (starting from 512 classical input features) or the antbees_general_noresnet.py data preparation file (starting from 150,528 classical input features) when applying PCA to the classical input to the circuit. Hilbert space mutual data overlap gram matrices and intermediary scatter plots are produced when tutorial_embedding_antbee_general.py is run.
+The ``tutorial_embedding_generalization_antbee_pca.py`` file can be run after running the ``antsbees_general.py`` data preparation file (starting from 512 classical input features) or the ``antsbees_general_noresnet.py`` data preparation file (starting from 150,528 classical input features) when applying PCA to the classical input to the circuit. Hilbert space mutual data overlap gram matrices and intermediary scatter plots are produced when ``tutorial_embedding_generalization_antbee_pca.py`` is run. Resulting test set precision, recall and F1 scores are also returned.
 
-The tutorial_embedding_generalization.py file can be run after running the cancer_general.py data preparation file (which includes a PCA step) or the cancer_non-PCA.py data preparation file (which does not include a PCA step) to classify breast cancer data. Hilbert space mutual data overlap gram matrices and intermediary scatter plots are produced when tutorial_embedding_breast_cancer.py is run.
+The ``tutorial_embedding_generalization.py`` file can be run after running the ``cancer_general.py`` data preparation file (which includes a PCA step) or the ``cancer_non-PCA.py`` data preparation file (which does not include a PCA step) to classify breast cancer data. Hilbert space mutual data overlap gram matrices and intermediary scatter plots are produced when ``tutorial_embedding_generalization.py`` is run. Resulting test set precision, recall and F1 scores are also returned.
 
 By running the above files, it can be seen in the resulting outputs that:
 - Quantum Metric Learning cannot generalize well for test data when using a dataset with too many initial features relative to the number of training samples (e.g., the ants/bees image dataset).
