@@ -18,9 +18,9 @@ Below is the general circuit representing a quantum metric learning circuit:
 
 ![](embedding_metric_learning/classification.png)
 
-The circuit takes classical inputs parameters, ``x1`` and  ``x2``, alongside 'quantum' parameters denoted by $\theta$ to train a 'quantum feature map'. The quantum feature map consists of single-qubit rotational gates (Rx, Ry) and two-qubit ZZ-entangler gates.
+The circuit takes classical inputs parameters, ``x1`` and  ``x2``, alongside 'quantum' parameters denoted by $\theta$ to train a 'quantum feature map'. The quantum feature map consists of single-qubit rotational gates (Rx, Ry) and two-qubit ZZ-entangler gates. These allow the data to be represented by increasingly steep and numerous products of sine and cosine components, allowing for the necessary level of expressivity needed for effective embedding.
 
-Through this code, the effects of varying the number of input parameters through different datasets and dimensional reduction methods can be explored. Precision, recall and F1 scores are used alongside training cost & test cost to assess how well each trained model generalizes for test data. More details on this topic can be found in the research paper, [Generalization Performance of Quantum Metric Learning Classifiers](https://doi.org/10.3390/biom12111576). 
+With the code in this repository, the effects of varying the number of input parameters through different datasets and dimensional reduction methods can be explored. Precision, recall and F1 scores are used alongside training cost & test cost to assess how well each trained model generalizes for test data. More details on this topic can be found in the research paper, [Generalization Performance of Quantum Metric Learning Classifiers](https://doi.org/10.3390/biom12111576). 
 
 ======================================================
 
