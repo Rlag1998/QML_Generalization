@@ -341,7 +341,7 @@ plt.show()
 #
 # |
 #
-# .. figure:: ../embedding_metric_learning/figures/All_Figures/3.4.1.png
+# .. figure:: ../embedding_metric_learning/figures/All_Figures/3.3.1.png
 #   :align: center
 #   :width: 90%
 #
@@ -366,7 +366,7 @@ plt.show()
 #
 # |
 #
-# .. figure:: ../embedding_metric_learning/figures/All_Figures/3.4.2.png
+# .. figure:: ../embedding_metric_learning/figures/All_Figures/3.3.2.png
 #   :align: center
 #   :width: 90%
 #
