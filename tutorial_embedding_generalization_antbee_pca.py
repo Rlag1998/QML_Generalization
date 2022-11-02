@@ -464,7 +464,8 @@ plt.show()
 #
 # Below, test set classification is evaluated by means of a ``predict`` 
 # function to yield subsequent F1, precision, recall, accuracy and specificity 
-# scores. A confusion matrix of the form (TP, FN, FP, TN) is also returned.
+# scores. A confusion matrix of the form (TP, FN, FP, TN) is also returned. 
+# As expected, poor classification performance is observed with this dataset.
 
 def predict(n_samples, pred_low, pred_high, choice):
 
