@@ -10,7 +10,7 @@ More details on the following topic can be found in ["Generalization Performance
 
 ======================================================
 
-This code demonstrates the generalization performance of quantum metric learning ('quantum embedding') classifiers.
+This code demonstrates the generalization performance of 'quantum metric learning' classifiers.
 
 The resulting models are used to classify breast cancer data and ant/bee image data.
 
