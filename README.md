@@ -14,7 +14,7 @@ the datapoints of different classes become maximally separated in Hilbert
 space. This results in a simple linear decision boundary in Hilbert space 
 which represents a complex decision boundary in the original feature space.
 
-Below is the general circuit representing a quantum metric learning circuit:
+Below is the general form of a quantum metric learning circuit:
 
 ![](embedding_metric_learning/classification.png)
 
