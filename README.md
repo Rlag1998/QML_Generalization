@@ -6,7 +6,7 @@ _Adapted from work authored by Maria Schuld and Aroosa Ijaz_
 
 _Correspondence: sb3de@virginia.edu_
 
-This code demonstrates the generalization performance of 'quantum metric learning' classifiers.
+The code in this repository can be used to demonstrate the generalization performance of 'quantum metric learning' classifiers.
 Quantum metric learning is first introduced in [Lloyd, Schuld, Ijaz, Izaac, Killoran (2020)](https://arxiv.org/abs/2001.03622) 
 and is used to train a quantum embedding, which can be used for classifying data. Quantum embeddings are learned by maximizing 
 Hilbert-Schmidt distance of datapoints from two classes. After training, 
@@ -14,7 +14,7 @@ the datapoints of different classes become maximally separated in Hilbert
 space. This results in a simple linear decision boundary in Hilbert space 
 which represents a complex decision boundary in the original feature space.
 
-More details on this topic can be found in the research paper, [Generalization Performance of Quantum Metric Learning Classifiers](https://doi.org/10.3390/biom12111576). 
+By using this code, the effects of varying the number of input parameters through different datasets and dimensional reduction methods can be explored. Precision, recall and F1 scores are used alongside training cost & test cost to assess how well each trained model generalizes for test data. More details on this topic can be found in the research paper, [Generalization Performance of Quantum Metric Learning Classifiers](https://doi.org/10.3390/biom12111576). 
 
 ======================================================
 
@@ -33,8 +33,8 @@ The tutorial_embedding_generalization_antbee_pca.py file can be run after runnin
 The tutorial_embedding_generalization.py file can be run after running the cancer_general.py data preparation file (which includes a PCA step) or the cancer_non-PCA.py data preparation file (which does not include a PCA step) to classify breast cancer data. Hilbert space mutual data overlap gram matrices and intermediary scatter plots are produced when tutorial_embedding_breast_cancer.py is run.
 
 By running the above files, it can be seen in the resulting outputs that:
-- Quantum Metric Learning cannot generalize well for test data when using a dataset with too many initial features (e.g., the ants/bees image dataset).
-- Quantum Metric Learning results in good classification for datasets that have a much greater number of samples than the intial number of parameters (e.g. the breast cancer diagnostic dataset).
+- Quantum Metric Learning cannot generalize well for test data when using a dataset with too many initial features relative to the number of training samples (e.g., the ants/bees image dataset).
+- Quantum Metric Learning results in good classification for datasets that have a much greater number of training samples than the intial number of parameters (e.g., the breast cancer diagnostic dataset).
 - PCA can help improve generalizability and classification performance when applied to the initial input features of a dataset.
 
 References:
