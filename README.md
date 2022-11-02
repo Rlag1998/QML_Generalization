@@ -7,7 +7,7 @@ _Adapted from work authored by Maria Schuld and Aroosa Ijaz_
 _Correspondence: sb3de@virginia.edu_
 
 The code in this repository can be used to demonstrate the generalization performance of 'quantum metric learning' classifiers.
-Quantum metric learning is first introduced in [Lloyd et al. (2020)](https://arxiv.org/abs/2001.03622) 
+Quantum metric learning is first introduced in [Lloyd, Schuld, Ijaz, Izaac, Killoran (2020)](https://arxiv.org/abs/2001.03622) 
 and is used to train a quantum embedding, which can be used for classifying data. Quantum embeddings are learned by maximizing 
 Hilbert-Schmidt distances of datapoints from two classes. After training, 
 datapoints of different classes become maximally separated in Hilbert 
