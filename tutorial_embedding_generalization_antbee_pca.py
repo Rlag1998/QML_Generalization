@@ -340,7 +340,7 @@ plt.show()
 #
 # |
 #
-# .. figure:: ../embedding_metric_learning/figures/All_Figures/1.2.1.png
+# .. figure:: ../embedding_metric_learning/figures/All_Figures/1.8.1.png
 #   :align: center
 #   :width: 90%
 #
@@ -365,7 +365,7 @@ plt.show()
 #
 # |
 #
-# .. figure:: ../embedding_metric_learning/figures/All_Figures/1.2.2.png
+# .. figure:: ../embedding_metric_learning/figures/All_Figures/1.8.2.png
 #   :align: center
 #   :width: 90%
 #
@@ -410,7 +410,7 @@ plt.show()
 #
 # |
 #
-# .. figure:: ../embedding_metric_learning/figures/All_Figures/1.2.3.png
+# .. figure:: ../embedding_metric_learning/figures/All_Figures/1.8.3.png
 #   :align: center
 #   :width: 90%
 #
@@ -447,7 +447,7 @@ plt.show()
 #
 # |
 #
-# .. figure:: ../embedding_metric_learning/figures/All_Figures/1.2.4.png
+# .. figure:: ../embedding_metric_learning/figures/All_Figures/1.8.4.png
 #   :align: center
 #   :width: 90%
 #
