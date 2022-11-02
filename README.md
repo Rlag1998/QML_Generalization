@@ -8,8 +8,8 @@ _Correspondence: sb3de@virginia.edu_
 
 The code in this repository can be used to demonstrate the generalization performance of 'quantum metric learning' classifiers.
 Quantum metric learning is first introduced in [Lloyd et al. (2020)](https://arxiv.org/abs/2001.03622) 
-and is used to train a quantum embedding, which can be used for classifying data. Quantum embeddings are learned by maximizing 
-Hilbert-Schmidt distance of datapoints from two classes. After training, 
+and is used to train a quantum embedding, which can be used for classifying data. Quantum embeddings are learned by maximizing the 
+Hilbert-Schmidt distance of datapoints between two classes. After training, 
 the datapoints of different classes become maximally separated in Hilbert 
 space. This results in a simple linear decision boundary in Hilbert space 
 which represents a complex decision boundary in the original feature space.
